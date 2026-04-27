@@ -4,6 +4,7 @@
     "source.fixAll.eslint": "explicit"
   },
   "eslint.validate": ["javascript", "html", "css"],
+  "stylelint.enable": false,
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
