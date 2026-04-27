@@ -1,0 +1,36 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "useGitignore": true,
+  "ignorePaths": [
+    "node_modules/**",
+    "package-lock.json",
+    "assets/images/**"
+  ],
+  "files": [
+    "**/*.{html,css,js,md,json}"
+  ],
+  "words": [
+    "ATDS",
+    "Chickasaw",
+    "codex",
+    "copyblock",
+    "Electrode",
+    "ElectrodeRepairs",
+    "Esme",
+    "Feehan",
+    "Francis",
+    "Gabriel",
+    "Grayson",
+    "HITEC",
+    "Nich",
+    "Prettier",
+    "SEO",
+    "STWP",
+    "tokenslive",
+    "Tuttle",
+    "unenforceability",
+    "Wessels",
+    "WordPress"
+  ]
+}

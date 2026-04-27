@@ -4,10 +4,12 @@
   "description": "A full functioning website for Electrode Repairs, as a final Software Engineering Teams school project, for my brother Gabriel and I, Daniel, as well as for my Chickasaw STWP Internship placement at Electrode Repairs.  This showcases our HTML, CSS, and JavaScript skills attained through school at Francis Tuttle Technology Center.",
   "main": "script.js",
   "scripts": {
-    "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint . --ext .js",
-    "lint:css": "stylelint \"css/**/*.css\"",
-    "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix"
+    "lint": "npm run lint:js && npm run lint:html && npm run lint:css && npm run spellcheck",
+    "lint:js": "eslint \"**/*.js\"",
+    "lint:html": "eslint \"**/*.html\"",
+    "lint:css": "eslint \"**/*.css\"",
+    "lint:fix": "npm run lint:js -- --fix && npm run lint:html -- --fix && npm run lint:css -- --fix",
+    "spellcheck": "cspell --no-progress --show-suggestions \"**/*.{html,css,js,md,json}\""
   },
   "repository": {
     "type": "git",
@@ -22,11 +24,13 @@
   },
   "homepage": "https://github.com/danielwadeheat/ElectrodeRepairs#readme",
   "devDependencies": {
+    "@eslint/css": "^1.1.0",
     "@eslint/js": "^9.25.1",
+    "@html-eslint/eslint-plugin": "^0.59.0",
+    "@html-eslint/parser": "^0.59.0",
+    "cspell": "^10.0.0",
     "eslint": "^9.25.1",
     "eslint-config-prettier": "^10.1.8",
-    "prettier": "^3.8.3",
-    "stylelint": "^16.18.0",
-    "stylelint-config-standard": "^38.0.0"
+    "prettier": "^3.8.3"
   }
 }
