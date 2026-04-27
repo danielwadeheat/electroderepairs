@@ -1,4 +1,4 @@
-name: Lint And Spellcheck
+name: Lint Spellcheck And Format
 
 on:
   push:
@@ -22,3 +22,6 @@ jobs:
 
       - name: Run Lint And Spellcheck
         run: npm run lint
+
+      - name: Run Prettier Check
+        run: npm run format:check
