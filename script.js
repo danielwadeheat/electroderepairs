@@ -935,6 +935,8 @@ if (modernQuoteForm) {
     issues: [],
     issueCustom: '',
   };
+  const quoteStateStorageKey = 'electrode-repairs.quote-widget.v1';
+  let isRestoringQuoteState = false;
 
   if (quoteWidgetShell) {
     const setWidgetEngaged = () => {
@@ -1098,6 +1100,7 @@ if (modernQuoteForm) {
           issueCustomInput.value = '';
           renderModels();
           renderIssues();
+          persistQuoteState();
         });
         modelGrid.appendChild(button);
       });
@@ -1131,6 +1134,7 @@ if (modernQuoteForm) {
           issueCustomInput.value = '';
           renderModels();
           renderIssues();
+          persistQuoteState();
         });
         modelGrid.appendChild(button);
       });
@@ -1169,6 +1173,7 @@ if (modernQuoteForm) {
         }
         renderModels();
         renderIssues();
+        persistQuoteState();
       });
       modelGrid.appendChild(button);
     });
@@ -1201,10 +1206,66 @@ if (modernQuoteForm) {
           issueCustomInput.focus();
         }
         renderIssues();
+        persistQuoteState();
       });
       issueGrid.appendChild(button);
     });
     issueCustomWrap.hidden = !state.issues.some((currentIssue) => currentIssue.other);
+  }
+
+  function getModelListForCurrentSelection() {
+    if (!state.device) {
+      return [];
+    }
+    if (state.device.key === 'android') {
+      return quoteData.androidModels[state.androidBrand] || [];
+    }
+    if (state.device.key === 'tablet') {
+      return quoteData.tabletModels[state.tabletType] || [];
+    }
+    return quoteData.models[state.device.key] || [];
+  }
+
+  function getIssueListForCurrentSelection() {
+    if (!state.device) {
+      return [];
+    }
+    return quoteData.issues[state.device.key] || [];
+  }
+
+  function clearPersistedQuoteState() {
+    try {
+      window.sessionStorage.removeItem(quoteStateStorageKey);
+    } catch {
+      // Ignore storage access errors in restricted/private contexts.
+    }
+  }
+
+  function persistQuoteState() {
+    if (isRestoringQuoteState) {
+      return;
+    }
+
+    const selectedMedium = modernQuoteForm.querySelector('input[name="medium"]:checked');
+    const payload = {
+      version: 1,
+      savedAt: Date.now(),
+      step: state.step,
+      deviceKey: state.device?.key || null,
+      androidBrand: state.androidBrand,
+      tabletType: state.tabletType,
+      modelKey: state.model?.key || null,
+      modelCustom: state.modelCustom || '',
+      issueKeys: state.issues.map((issue) => issue.key),
+      issueCustom: state.issueCustom || '',
+      medium: selectedMedium?.value || 'sms',
+    };
+
+    try {
+      window.sessionStorage.setItem(quoteStateStorageKey, JSON.stringify(payload));
+    } catch {
+      // Ignore storage quota/access errors.
+    }
   }
 
   function goToStep(nextStep) {
@@ -1226,6 +1287,7 @@ if (modernQuoteForm) {
       nav.hidden = state.step === 5;
       nav.style.display = state.step === 5 ? 'none' : 'flex';
     }
+    persistQuoteState();
   }
 
   function scrollWidgetToTop() {
@@ -1330,6 +1392,148 @@ if (modernQuoteForm) {
     hiddenModelInput.value = state.modelCustom || modelLabel;
   }
 
+  function getMaxRestorableStep() {
+    let maxStep = 1;
+
+    if (validateStep(1)) {
+      maxStep = 2;
+    } else {
+      return maxStep;
+    }
+
+    if (validateStep(2)) {
+      maxStep = 3;
+    } else {
+      return maxStep;
+    }
+
+    if (validateStep(3)) {
+      maxStep = 4;
+    } else {
+      return maxStep;
+    }
+
+    if (validateStep(4)) {
+      maxStep = 5;
+    }
+
+    return maxStep;
+  }
+
+  function restoreQuoteState() {
+    let savedState;
+    try {
+      const raw = window.sessionStorage.getItem(quoteStateStorageKey);
+      if (!raw) {
+        return false;
+      }
+      savedState = JSON.parse(raw);
+    } catch {
+      clearPersistedQuoteState();
+      return false;
+    }
+
+    if (!savedState || typeof savedState !== 'object' || savedState.version !== 1) {
+      clearPersistedQuoteState();
+      return false;
+    }
+
+    const restoredDevice = quoteData.devices.find((device) => device.key === savedState.deviceKey) || null;
+    if (!restoredDevice) {
+      clearPersistedQuoteState();
+      return false;
+    }
+
+    isRestoringQuoteState = true;
+    let wasRestored = false;
+
+    try {
+      state.device = restoredDevice;
+      state.androidBrand = null;
+      state.tabletType = null;
+      state.model = null;
+      state.modelCustom = '';
+      state.issues = [];
+      state.issueCustom = '';
+
+      if (state.device.key === 'android') {
+        const brandExists = quoteData.models.android.some((brand) => brand.key === savedState.androidBrand);
+        if (brandExists) {
+          state.androidBrand = savedState.androidBrand;
+        }
+      }
+
+      if (state.device.key === 'tablet') {
+        const tabletTypeExists = quoteData.models.tablet.some((tabletType) => tabletType.key === savedState.tabletType);
+        if (tabletTypeExists) {
+          state.tabletType = savedState.tabletType;
+        }
+      }
+
+      const modelList = getModelListForCurrentSelection();
+      const modelIndex = modelList.findIndex((model) => model.key === savedState.modelKey);
+      if (modelIndex >= 0) {
+        const restoredModel = modelList[modelIndex];
+        state.model = { ...restoredModel, id: restoredModel.other ? '000' : String(modelIndex + 1) };
+        if (restoredModel.other && typeof savedState.modelCustom === 'string') {
+          state.modelCustom = savedState.modelCustom.trim();
+        }
+      }
+
+      const issueList = getIssueListForCurrentSelection();
+      if (Array.isArray(savedState.issueKeys)) {
+        state.issues = savedState.issueKeys
+          .map((issueKey) => {
+            const issueIndex = issueList.findIndex((issue) => issue.key === issueKey);
+            if (issueIndex < 0) {
+              return null;
+            }
+            const issue = issueList[issueIndex];
+            return { ...issue, id: issue.other ? '000' : String(issueIndex + 1) };
+          })
+          .filter(Boolean);
+      }
+
+      if (
+        state.issues.some((issue) => issue.other) &&
+        typeof savedState.issueCustom === 'string' &&
+        savedState.issueCustom.trim().length > 0
+      ) {
+        state.issueCustom = savedState.issueCustom.trim();
+      }
+
+      const savedMedium =
+        savedState.medium === 'sms' || savedState.medium === 'call' || savedState.medium === 'email'
+          ? savedState.medium
+          : null;
+      if (savedMedium) {
+        const mediumInput = modernQuoteForm.querySelector(`input[name="medium"][value="${savedMedium}"]`);
+        if (mediumInput instanceof HTMLElement) {
+          mediumInput.checked = true;
+        }
+      }
+
+      modelCustomInput.value = state.modelCustom;
+      issueCustomInput.value = state.issueCustom;
+
+      renderDevices();
+      renderModels();
+      renderIssues();
+
+      const requestedStep = Number.isFinite(savedState.step) ? Math.trunc(savedState.step) : 1;
+      const maxRestorableStep = getMaxRestorableStep();
+      const restoredStep = Math.min(Math.max(1, requestedStep), maxRestorableStep);
+      goToStep(restoredStep);
+      wasRestored = true;
+      return true;
+    } finally {
+      isRestoringQuoteState = false;
+      if (wasRestored) {
+        persistQuoteState();
+      }
+    }
+  }
+
   function nextStep() {
     submitStatus.hidden = true;
     if (!validateStep(state.step)) {
@@ -1359,10 +1563,19 @@ if (modernQuoteForm) {
 
   modelCustomInput.addEventListener('input', () => {
     state.modelCustom = modelCustomInput.value.trim();
+    persistQuoteState();
   });
 
   issueCustomInput.addEventListener('input', () => {
     state.issueCustom = issueCustomInput.value.trim();
+    persistQuoteState();
+  });
+
+  modernQuoteForm.addEventListener('change', (event) => {
+    const target = event.target;
+    if (target instanceof HTMLElement && target.matches('input[name="medium"]')) {
+      persistQuoteState();
+    }
   });
 
   modernQuoteForm.addEventListener('submit', (event) => {
@@ -1379,10 +1592,13 @@ if (modernQuoteForm) {
   submitFrame?.addEventListener('load', () => {
     submitStatus.hidden = false;
     submitStatus.textContent = 'Quote request submitted. Our team will follow up shortly.';
+    clearPersistedQuoteState();
   });
 
-  renderDevices();
-  renderModels();
-  renderIssues();
-  goToStep(1);
+  if (!restoreQuoteState()) {
+    renderDevices();
+    renderModels();
+    renderIssues();
+    goToStep(1);
+  }
 }
