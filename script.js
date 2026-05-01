@@ -1295,7 +1295,7 @@ if (modernQuoteForm) {
       return;
     }
     const scrollTarget = document.getElementById('instant-quote') || quoteWidgetShell;
-    const stickyHeader = document.querySelector('.legal-header');
+    const stickyHeader = document.querySelector('.simple-header, .legal-header');
     const headerHeight = stickyHeader instanceof HTMLElement ? stickyHeader.getBoundingClientRect().height : 0;
     const topOffset = headerHeight + 12;
     const targetTop = window.scrollY + scrollTarget.getBoundingClientRect().top - topOffset;

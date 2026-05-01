@@ -28,7 +28,7 @@
   padding: 1.25rem 1rem;
 }
 
-.legal-header {
+.simple-header {
   position: sticky;
   top: 0;
   z-index: 20;
@@ -37,7 +37,7 @@
   backdrop-filter: blur(10px);
 }
 
-.legal-header-inner {
+.simple-header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -45,13 +45,13 @@
   padding: 0.85rem 0;
 }
 
-.legal-logo-link {
+.simple-logo-link {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
 }
 
-.legal-logo {
+.simple-logo {
   width: clamp(138px, 35vw, 188px);
   height: auto;
 }
@@ -92,6 +92,16 @@
 
 .legal-main {
   padding: 1.1rem 0 2.2rem;
+}
+
+.legal-page-links-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.6rem;
+}
+
+.legal-page-links {
+  display: inline-flex;
 }
 
 .legal-card {
@@ -1430,12 +1440,12 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .legal-header-inner {
+  .simple-header-inner {
     gap: 1rem;
     padding: 0.95rem 0;
   }
 
-  .legal-logo {
+  .simple-logo {
     width: clamp(180px, 23vw, 244px);
   }
 
@@ -1445,6 +1455,10 @@
 
   .legal-main {
     padding: 1.7rem 0 2.7rem;
+  }
+
+  .legal-page-links-row {
+    margin-bottom: 0.8rem;
   }
 
   .legal-card {
