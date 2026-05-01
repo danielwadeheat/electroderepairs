@@ -381,14 +381,9 @@
 }
 
 #quote-model-context-image {
-  width: 4.7rem;
-  height: 4.7rem;
-  border-radius: 10px;
-  border: 1px solid #3d5670;
-  background: linear-gradient(145deg, #152b42, #102134);
+  width: 9.4rem;
+  height: 9.4rem;
   object-fit: contain;
-  padding: 0.22rem;
-  box-shadow: 0 8px 18px rgb(3 10 19 / 32%);
 }
 
 .quote-microcopy {
@@ -432,7 +427,7 @@
   align-content: start;
   text-align: center;
   gap: 0.46rem;
-  min-height: 7.1rem;
+  min-height: 10.4rem;
   padding: 0.62rem 0.5rem;
 }
 
@@ -468,8 +463,8 @@
 }
 
 #quote-device-grid .quote-choice-media {
-  width: 3.3rem;
-  height: 3.3rem;
+  width: 6.6rem;
+  height: 6.6rem;
   margin-inline: auto;
 }
 
@@ -776,8 +771,8 @@
   }
 
   #quote-device-grid .quote-choice-media {
-    width: 3.55rem;
-    height: 3.55rem;
+    width: 7.1rem;
+    height: 7.1rem;
   }
 
   .quote-field-grid {

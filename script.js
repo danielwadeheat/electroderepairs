@@ -1222,6 +1222,22 @@ if (modernQuoteForm) {
     }
   }
 
+  function scrollWidgetToTop() {
+    if (!quoteWidgetShell) {
+      return;
+    }
+    const scrollTarget = document.getElementById('instant-quote') || quoteWidgetShell;
+    const stickyHeader = document.querySelector('.legal-header');
+    const headerHeight = stickyHeader instanceof HTMLElement ? stickyHeader.getBoundingClientRect().height : 0;
+    const topOffset = headerHeight + 12;
+    const targetTop = window.scrollY + scrollTarget.getBoundingClientRect().top - topOffset;
+
+    window.scrollTo({
+      top: Math.max(0, targetTop),
+      behavior: 'smooth',
+    });
+  }
+
   function validateStep(step) {
     if (step === 1) {
       return Boolean(state.device);
@@ -1318,16 +1334,19 @@ if (modernQuoteForm) {
       updateReview();
     }
     goToStep(state.step + 1);
+    scrollWidgetToTop();
   }
 
   backBtn.addEventListener('click', () => {
     submitStatus.hidden = true;
     goToStep(state.step - 1);
+    scrollWidgetToTop();
   });
 
   finalBackBtn?.addEventListener('click', () => {
     submitStatus.hidden = true;
     goToStep(state.step - 1);
+    scrollWidgetToTop();
   });
 
   nextBtn.addEventListener('click', nextStep);
