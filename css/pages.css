@@ -233,14 +233,15 @@
   line-height: 1.25;
 }
 
-#about-story-title {
+.about-story-title {
   text-align: center;
   font-size: clamp(1.34rem, 3.7vw, 1.66rem);
 }
 
 .about-heading-with-icon {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.45rem;
 }
 
