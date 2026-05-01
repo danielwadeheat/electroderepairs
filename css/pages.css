@@ -264,11 +264,6 @@
   fill: none;
 }
 
-#about-bios-title .about-heading-icon {
-  width: 1.22em;
-  height: 1.22em;
-}
-
 .about-panel p {
   margin: 0.72rem 0 0;
   color: #ccd8e8;
@@ -295,42 +290,6 @@
 .about-grid-two {
   display: grid;
   gap: 1rem;
-}
-
-.about-bios-intro {
-  color: #dce8f6;
-  font-weight: 600;
-}
-
-.about-bio-format {
-  margin: 0.85rem 0 0;
-  padding-left: 1.15rem;
-  color: #ccd8e8;
-  display: grid;
-  gap: 0.48rem;
-}
-
-.about-bio-examples {
-  margin-top: 1rem;
-  display: grid;
-  gap: 0.75rem;
-}
-
-.about-bio {
-  border: 1px solid #2a3a52;
-  border-radius: 12px;
-  padding: 0.9rem;
-  background: linear-gradient(180deg, rgb(17 24 39 / 96%), rgb(13 20 35 / 96%));
-}
-
-.about-bio h3 {
-  margin: 0;
-  font-size: 0.96rem;
-  color: #e8f1fd;
-}
-
-.about-bio p {
-  margin-top: 0.45rem;
 }
 
 /* Reviews section reused for About page */
@@ -1530,10 +1489,6 @@
   .about-grid-two {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: start;
-  }
-
-  .about-bio-examples {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .simple-header-inner {
