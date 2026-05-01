@@ -1148,6 +1148,102 @@
   }
 }
 
+.button-dot-orbit {
+  --button-dot-border-tone: rgb(42 130 196 / 45%);
+
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+}
+
+.button-dot-orbit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 7px;
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--button-dot-border-tone);
+  box-shadow:
+    0 0 0 1px rgb(42 130 196 / 22%),
+    0 0 3px rgb(42 130 196 / 36%);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition:
+    opacity 0.15s ease,
+    width 0.12s ease,
+    height 0.12s ease,
+    box-shadow 0.12s ease;
+  pointer-events: none;
+  z-index: 2;
+  offset-rotate: 0deg;
+  offset-anchor: 50% 50%;
+}
+
+.button-dot-orbit::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border-radius: 12px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(58 160 230 / 38%) 0%,
+    rgb(34 197 175 / 32%) 42%,
+    rgb(0 112 192 / 14%) 64%,
+    transparent 76%
+  );
+  filter: blur(8px);
+  opacity: 0;
+  transform: scale(0.94);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.button-dot-orbit:hover::before,
+.button-dot-orbit:focus-visible::before {
+  opacity: 1;
+  animation: contact-submit-led-dot 4.6s linear infinite;
+}
+
+.button-dot-orbit:active::before {
+  opacity: 1;
+  width: 4px;
+  height: 4px;
+  box-shadow:
+    0 0 0 1px rgb(42 130 196 / 26%),
+    0 0 4px rgb(42 130 196 / 44%);
+  animation-duration: 0.38s;
+}
+
+.button-dot-orbit:active::after {
+  opacity: 1;
+  transform: scale(1);
+  background:
+    linear-gradient(90deg, rgb(58 160 230 / 26%) 0%, rgb(34 197 175 / 30%) 50%, rgb(58 160 230 / 26%) 100%),
+    radial-gradient(
+      ellipse 130% 95% at 50% 50%,
+      rgb(58 160 230 / 30%) 0%,
+      rgb(34 197 175 / 26%) 54%,
+      rgb(0 112 192 / 12%) 78%,
+      transparent 100%
+    );
+  filter: blur(7px);
+}
+
+@supports (offset-path: inset(0 round 8px)) {
+  .button-dot-orbit::before {
+    top: 0;
+    left: 0;
+    transform: none;
+    offset-path: inset(1px round 8px);
+    offset-distance: 0%;
+  }
+}
+
 .contact-note {
   margin: 0;
   color: #9eb2c8;
