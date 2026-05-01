@@ -238,6 +238,28 @@
   color: #bfd0e2;
 }
 
+.repair-visual {
+  margin: 0;
+}
+
+.repair-visual-mobile {
+  justify-self: center;
+}
+
+.repair-visual-desktop {
+  display: none;
+  margin-top: 0.95rem;
+}
+
+.repair-visual-image {
+  display: block;
+  width: min(100%, 34rem);
+  height: auto;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
 .quote-workbench {
   border: 1px solid #24405d;
   border-radius: 16px;
@@ -759,6 +781,14 @@
     grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
     align-items: start;
     column-gap: 1.15rem;
+  }
+
+  .repair-visual-mobile {
+    display: none;
+  }
+
+  .repair-visual-desktop {
+    display: block;
   }
 
   .quote-choice-grid {
