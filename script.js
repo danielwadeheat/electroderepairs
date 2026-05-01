@@ -442,6 +442,33 @@ if (modernQuoteForm) {
   const reviewMedium = document.getElementById('quote-review-medium');
 
   const quoteImageBase = 'assets/images/quote-widget';
+  const deviceImageSources = {
+    iphone: {
+      primary: `${quoteImageBase}/devices/iphone_transparent.webp`,
+      fallback: `${quoteImageBase}/devices/iphone.svg`,
+    },
+    android: {
+      primary: `${quoteImageBase}/devices/android_transparent.webp`,
+      fallback: `${quoteImageBase}/devices/android.svg`,
+    },
+    tablet: {
+      primary: `${quoteImageBase}/devices/tablet_transparent.webp`,
+      fallback: `${quoteImageBase}/devices/tablet.svg`,
+    },
+    laptop: {
+      primary: `${quoteImageBase}/devices/laptop_transparent.webp`,
+      fallback: `${quoteImageBase}/devices/laptop.svg`,
+    },
+    console: {
+      primary: `${quoteImageBase}/devices/ps4_transparent.webp`,
+      fallback: `${quoteImageBase}/devices/console.svg`,
+    },
+    desktop: {
+      primary: `${quoteImageBase}/devices/desktop_transparent.webp`,
+      fallback: `${quoteImageBase}/devices/desktop.svg`,
+    },
+  };
+
   const issueCatalog = {
     screen_damage: { key: 'screen-damage', label: 'Screen Damage' },
     battery_issue: { key: 'battery-issue', label: 'Battery Issue' },
@@ -471,23 +498,22 @@ if (modernQuoteForm) {
     return `${quoteImageBase}/${type}/${key}.svg`;
   }
 
-  const modelContextImages = {
-    iphone: 'assets/images/quote-widget/model-context/iphone-family.svg',
-    samsung: 'assets/images/quote-widget/model-context/samsung-family.svg',
-    google: 'assets/images/quote-widget/model-context/google-family.svg',
-    oneplus: 'assets/images/quote-widget/model-context/oneplus-family.svg',
-    lg: 'assets/images/quote-widget/model-context/lg-family.svg',
-    motorola: 'assets/images/quote-widget/model-context/motorola-family.svg',
-  };
+  function deviceImagePath(deviceKey) {
+    return deviceImageSources[deviceKey]?.primary || imagePath('devices', deviceKey);
+  }
+
+  function deviceFallbackPath(deviceKey) {
+    return deviceImageSources[deviceKey]?.fallback || imagePath('devices', deviceKey);
+  }
 
   const quoteData = {
     devices: [
-      { id: '1', key: 'iphone', label: 'iPhone', image: imagePath('devices', 'iphone') },
-      { id: '2', key: 'android', label: 'Android Phone', image: imagePath('devices', 'android') },
-      { id: '6', key: 'tablet', label: 'Tablet', image: imagePath('devices', 'tablet') },
-      { id: '4', key: 'laptop', label: 'Laptop', image: imagePath('devices', 'laptop') },
-      { id: '5', key: 'console', label: 'Gaming Console', image: imagePath('devices', 'console') },
-      { id: '13', key: 'desktop', label: 'Desktop Services', image: imagePath('devices', 'desktop') },
+      { id: '1', key: 'iphone', label: 'iPhone', image: deviceImagePath('iphone') },
+      { id: '2', key: 'android', label: 'Android Phone', image: deviceImagePath('android') },
+      { id: '6', key: 'tablet', label: 'Tablet', image: deviceImagePath('tablet') },
+      { id: '4', key: 'laptop', label: 'Laptop', image: deviceImagePath('laptop') },
+      { id: '5', key: 'console', label: 'Gaming Console', image: deviceImagePath('console') },
+      { id: '13', key: 'desktop', label: 'Desktop Services', image: deviceImagePath('desktop') },
       { id: '12', key: 'other', label: 'Other', image: imagePath('devices', 'other') },
     ],
     models: {
@@ -927,7 +953,7 @@ if (modernQuoteForm) {
     });
   }
 
-  function makeChoiceButton({ label, image, group, key, isOther = false, showImage = true }) {
+  function makeChoiceButton({ label, image, imageFallback = '', group, key, isOther = false, showImage = true }) {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'quote-choice';
@@ -937,12 +963,24 @@ if (modernQuoteForm) {
     button.dataset.other = String(isOther);
     button.innerHTML = showImage
       ? `
-      <span class="quote-choice-media"><img src="${image}" alt="" loading="lazy" /></span>
+      <span class="quote-choice-media"><img src="${image}" alt="" loading="lazy" decoding="async" /></span>
       <span class="quote-choice-label">${label}</span>
     `
       : `
       <span class="quote-choice-label">${label}</span>
     `;
+    if (showImage) {
+      const imageElement = button.querySelector('img');
+      if (imageElement && imageFallback && imageFallback !== image) {
+        imageElement.addEventListener('error', () => {
+          if (imageElement.dataset.fallbackApplied === 'true') {
+            return;
+          }
+          imageElement.dataset.fallbackApplied = 'true';
+          imageElement.src = imageFallback;
+        });
+      }
+    }
     if (!showImage) {
       button.classList.add('quote-choice-text-only');
     }
@@ -962,30 +1000,25 @@ if (modernQuoteForm) {
       return;
     }
 
-    let src = imagePath('devices', state.device.key);
+    let src = deviceImagePath(state.device.key);
+    let fallbackSrc = deviceFallbackPath(state.device.key);
     let alt = `${state.device.label} model category preview`;
 
-    if (state.device.key === 'iphone') {
-      src = modelContextImages.iphone;
-      alt = 'iPhone model family preview';
-    } else if (state.device.key === 'android') {
-      const brandMap = {
-        'android-samsung': ['samsung', 'Samsung model family preview'],
-        'android-google': ['google', 'Google Pixel model family preview'],
-        'android-oneplus': ['oneplus', 'OnePlus model family preview'],
-        'android-lg': ['lg', 'LG model family preview'],
-        'android-motorola': ['motorola', 'Motorola model family preview'],
-      };
-      const selectedBrand = state.androidBrand ? brandMap[state.androidBrand] : null;
-      if (selectedBrand) {
-        src = modelContextImages[selectedBrand[0]];
-        alt = selectedBrand[1];
-      } else {
-        src = imagePath('devices', 'android');
-        alt = 'Android phone category preview';
-      }
+    if (state.device.key === 'other') {
+      src = imagePath('devices', 'other');
+      fallbackSrc = src;
     }
 
+    modelContextImage.dataset.fallbackSrc = fallbackSrc;
+    modelContextImage.onerror = () => {
+      const fallback = modelContextImage.dataset.fallbackSrc;
+      if (!fallback || modelContextImage.dataset.fallbackApplied === 'true') {
+        return;
+      }
+      modelContextImage.dataset.fallbackApplied = 'true';
+      modelContextImage.src = fallback;
+    };
+    modelContextImage.dataset.fallbackApplied = 'false';
     modelContextImage.src = src;
     modelContextImage.alt = alt;
   }
@@ -996,6 +1029,7 @@ if (modernQuoteForm) {
       const button = makeChoiceButton({
         label: device.label,
         image: device.image,
+        imageFallback: deviceFallbackPath(device.key),
         group: 'device',
         key: device.key,
         isOther: device.key === 'other',

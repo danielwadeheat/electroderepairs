@@ -381,12 +381,13 @@
 }
 
 #quote-model-context-image {
-  width: 4.3rem;
-  height: 4.3rem;
+  width: 4.7rem;
+  height: 4.7rem;
   border-radius: 10px;
   border: 1px solid #3d5670;
   background: linear-gradient(145deg, #152b42, #102134);
-  object-fit: cover;
+  object-fit: contain;
+  padding: 0.22rem;
   box-shadow: 0 8px 18px rgb(3 10 19 / 32%);
 }
 
@@ -426,6 +427,15 @@
     transform 0.2s ease;
 }
 
+#quote-device-grid .quote-choice {
+  grid-template-columns: 1fr;
+  align-content: start;
+  text-align: center;
+  gap: 0.46rem;
+  min-height: 7.1rem;
+  padding: 0.62rem 0.5rem;
+}
+
 .quote-choice-text-only {
   grid-template-columns: 1fr;
   gap: 0;
@@ -457,15 +467,25 @@
   overflow: hidden;
 }
 
+#quote-device-grid .quote-choice-media {
+  width: 3.3rem;
+  height: 3.3rem;
+  margin-inline: auto;
+}
+
 .quote-choice-media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .quote-choice-label {
   font-size: 0.9rem;
   line-height: 1.3;
+}
+
+#quote-device-grid .quote-choice-label {
+  font-size: 0.84rem;
 }
 
 .quote-choice-other .quote-choice-label::before {
@@ -753,6 +773,11 @@
   .quote-choice-grid-model,
   .quote-choice-grid-issue {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #quote-device-grid .quote-choice-media {
+    width: 3.55rem;
+    height: 3.55rem;
   }
 
   .quote-field-grid {
