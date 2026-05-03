@@ -8,6 +8,7 @@
 
   .hero {
     padding: 2rem;
+    padding-right: clamp(2rem, 34vw, 20rem);
     margin-top: 1.5rem;
   }
 
