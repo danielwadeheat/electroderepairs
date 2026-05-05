@@ -38,7 +38,25 @@
     inset 0 1px 0 rgb(148 163 184 / 14%),
     0 18px 34px rgb(3 8 16 / 30%);
   padding: 1.25rem;
+  padding-right: clamp(1.25rem, 42vw, 18rem);
   overflow: clip;
+}
+
+.buy-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  background: url('../assets/images/circuit_integration.webp') right center / 100% 100% no-repeat;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.buy-hero-copy {
+  position: relative;
+  z-index: 1;
 }
 
 .buy-hero-copy h1 {
@@ -144,6 +162,19 @@
   border-radius: 12px;
   padding: 0.92rem 0.98rem;
   background: linear-gradient(180deg, rgb(17 24 39 / 96%), rgb(13 20 35 / 96%));
+  transition:
+    transform 0.18s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.buy-value-item:hover,
+.buy-value-item:focus-within {
+  transform: translateY(-1px);
+  border-color: #3b556f;
+  box-shadow:
+    inset 0 1px 0 rgb(148 163 184 / 14%),
+    0 8px 18px rgb(4 10 20 / 26%);
 }
 
 .buy-value-item h3 {
@@ -183,6 +214,19 @@
   max-width: 58ch;
 }
 
+.buy-form-visual {
+  margin: 0.95rem 0 0;
+}
+
+.buy-form-visual-image {
+  display: block;
+  width: min(100%, 34rem);
+  height: auto;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
 .buy-form-copy a {
   color: #9dd8ff;
   text-underline-offset: 2px;
@@ -199,6 +243,19 @@
   padding: 1rem;
   background: linear-gradient(180deg, rgb(15 23 38 / 94%), rgb(9 16 29 / 94%));
   box-shadow: inset 0 1px 0 rgb(148 163 184 / 12%);
+  transition:
+    transform 0.18s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.buy-form-card:hover,
+.buy-form-card:focus-within {
+  transform: translateY(-1px);
+  border-color: #3b556f;
+  box-shadow:
+    inset 0 1px 0 rgb(148 163 184 / 14%),
+    0 8px 18px rgb(4 10 20 / 26%);
 }
 
 @media (width >= 820px) {
