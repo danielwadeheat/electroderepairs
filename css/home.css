@@ -20,7 +20,7 @@ body::before {
   right: max(1rem, calc((100vw - 960px) / 2 + 1rem));
   height: clamp(13.5rem, 36vw, 24rem);
   aspect-ratio: 1 / 1;
-  background: url('../assets/images/circuit_transparentedges.webp') center / cover no-repeat;
+  background: url('../assets/images/circuit_integration.webp') center / cover no-repeat;
   opacity: 1;
   filter: none;
   pointer-events: none;
