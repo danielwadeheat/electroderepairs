@@ -18,17 +18,8 @@ body {
   padding: 1.25rem 1rem;
 }
 
-.logo {
-  display: block;
-  position: absolute;
-  top: 0.75rem;
-  left: 1rem;
-  width: clamp(132px, 38vw, 180px);
-  height: auto;
-}
-
 main.container {
-  padding-top: clamp(4.75rem, 22vw, 6rem);
+  padding-top: 1rem;
 }
 
 .hero {
@@ -38,6 +29,7 @@ main.container {
   box-shadow: inset 0 1px 0 rgb(42 130 196 / 28%);
   padding: 1.25rem;
   margin-top: 0.75rem;
+  text-align: center;
 }
 
 h1 {
@@ -53,6 +45,7 @@ p {
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.65rem;
   margin-top: 1rem;
 }

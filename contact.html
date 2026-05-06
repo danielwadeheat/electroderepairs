@@ -19,6 +19,7 @@
     <link rel="icon" href="/assets/images/favicon.svg?v=2" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?v=2" />
     <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/header.css" />
     <link rel="stylesheet" href="css/pages.css" />
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="me" href="https://www.instagram.com/electrode_repairs/" />
@@ -40,11 +41,52 @@
   </head>
 
   <body class="legal-body contact-body">
-    <header class="legal-header">
-      <div class="legal-container legal-header-inner">
-        <a href="index.html" class="legal-logo-link" aria-label="Electrode Repairs home">
-          <img class="legal-logo" src="assets/images/logo.png" alt="Electrode Repairs logo" />
+    <header class="site-header" data-site-header>
+      <div class="site-header-inner">
+        <a href="index.html" class="site-logo-link" aria-label="Electrode Repairs home">
+          <img class="site-logo" src="assets/images/logo.png" alt="Electrode Repairs logo" />
         </a>
+
+        <button
+          class="site-nav-toggle"
+          type="button"
+          aria-label="Open navigation"
+          aria-controls="site-navigation"
+          aria-expanded="false"
+          data-nav-toggle>
+          <span class="site-nav-toggle-bar" aria-hidden="true"></span>
+          <span class="site-nav-toggle-bar" aria-hidden="true"></span>
+          <span class="site-nav-toggle-bar" aria-hidden="true"></span>
+        </button>
+
+        <nav class="site-nav" id="site-navigation" aria-label="Primary navigation" data-site-nav>
+          <a class="site-nav-link" href="index.html">Home</a>
+          <a class="site-nav-link" href="about.html">About</a>
+          <div class="site-nav-dropdown" data-service-menu>
+            <button
+              class="site-nav-link site-nav-dropdown-trigger"
+              type="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+              data-service-toggle>
+              Choose Your Service
+              <span class="site-nav-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="site-nav-dropdown-menu" data-service-dropdown>
+              <a class="site-nav-dropdown-link" href="repairs.html">Repair</a>
+              <a class="site-nav-dropdown-link" href="buy.html">Buy Device</a>
+              <a class="site-nav-dropdown-link" href="sell.html">Sell Device</a>
+              <a
+                class="site-nav-dropdown-link"
+                href="https://apply.acima.com/lease?app_id=lo&amp;location_guid=loca-16b61cc2-6754-4842-84a8-cfedc408bd4a&amp;utm_campaign=mktg-lp&amp;utm_content=rven2300X600&amp;utm_medium=merchant&amp;utm_source=web-banner&amp;lang=en"
+                target="_blank"
+                rel="noopener noreferrer">
+                Financing
+              </a>
+            </div>
+          </div>
+          <a class="site-nav-link site-nav-contact" href="contact.html" aria-current="page">Contact</a>
+        </nav>
       </div>
     </header>
 
