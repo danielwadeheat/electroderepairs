@@ -6,6 +6,13 @@
     padding: 2rem 1rem;
   }
 
+<<<<<<< feat/about-financing-and-proofs
+=======
+  main.container {
+    padding-top: 1.5rem;
+  }
+
+>>>>>>> main
   .hero {
     padding: 2rem;
     padding-right: clamp(2rem, 34vw, 20rem);

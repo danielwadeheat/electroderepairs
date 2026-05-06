@@ -33,6 +33,13 @@ body::before {
   padding: 1.25rem 1rem;
 }
 
+<<<<<<< feat/about-financing-and-proofs
+=======
+main.container {
+  padding-top: 1rem;
+}
+
+>>>>>>> main
 .hero {
   position: relative;
   overflow: visible;
@@ -43,6 +50,7 @@ body::before {
   padding: 1.25rem;
   padding-right: clamp(1.25rem, 36vw, 14rem);
   margin-top: 0.75rem;
+  text-align: center;
 }
 
 .hero::before {
@@ -74,6 +82,7 @@ p {
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.65rem;
   margin-top: 1rem;
 }

@@ -42,6 +42,75 @@ structuredDataScript.type = 'application/ld+json';
 structuredDataScript.text = JSON.stringify(structuredData);
 document.head.appendChild(structuredDataScript);
 
+const siteHeader = document.querySelector('[data-site-header]');
+const navToggle = siteHeader?.querySelector('[data-nav-toggle]');
+const siteNav = siteHeader?.querySelector('[data-site-nav]');
+const serviceMenu = siteHeader?.querySelector('[data-service-menu]');
+const serviceToggle = siteHeader?.querySelector('[data-service-toggle]');
+
+function closeSiteNav() {
+  if (!siteHeader || !navToggle) {
+    return;
+  }
+  siteHeader.classList.remove('is-open');
+  navToggle.setAttribute('aria-expanded', 'false');
+  navToggle.setAttribute('aria-label', 'Open navigation');
+}
+
+function closeServiceMenu() {
+  if (!serviceMenu || !serviceToggle) {
+    return;
+  }
+  serviceMenu.classList.remove('is-open');
+  serviceToggle.setAttribute('aria-expanded', 'false');
+}
+
+if (siteHeader && navToggle && siteNav) {
+  navToggle.addEventListener('click', () => {
+    const navIsOpen = siteHeader.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', String(navIsOpen));
+    navToggle.setAttribute('aria-label', navIsOpen ? 'Close navigation' : 'Open navigation');
+  });
+
+  siteNav.addEventListener('click', (event) => {
+    const target = event.target;
+    if (target instanceof HTMLElement && target.closest('a')) {
+      closeSiteNav();
+      closeServiceMenu();
+    }
+  });
+
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (target instanceof Node && !siteHeader.contains(target)) {
+      closeSiteNav();
+      closeServiceMenu();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeSiteNav();
+      closeServiceMenu();
+    }
+  });
+}
+
+if (serviceMenu && serviceToggle) {
+  serviceToggle.addEventListener('click', () => {
+    const serviceIsOpen = serviceMenu.classList.toggle('is-open');
+    serviceToggle.setAttribute('aria-expanded', String(serviceIsOpen));
+  });
+
+  serviceMenu.addEventListener('focusout', () => {
+    window.setTimeout(() => {
+      if (!serviceMenu.contains(document.activeElement)) {
+        closeServiceMenu();
+      }
+    }, 0);
+  });
+}
+
 const emailTrigger = document.querySelector('[data-email-trigger]');
 const emailMenu = document.querySelector('[data-email-menu]');
 const copyEmailButton = document.querySelector('[data-copy-email-btn]');
