@@ -4,9 +4,7 @@
   z-index: 50;
   isolation: isolate;
   border-bottom: 1px solid rgb(148 163 184 / 18%);
-  background:
-    linear-gradient(180deg, rgb(34 54 82 / 42%), rgb(18 31 50 / 24%)),
-    rgb(18 31 50 / 26%);
+  background: linear-gradient(180deg, rgb(34 54 82 / 42%), rgb(18 31 50 / 24%)), rgb(18 31 50 / 26%);
   box-shadow:
     0 14px 30px rgb(3 8 16 / 22%),
     inset 0 1px 0 rgb(255 255 255 / 10%);
@@ -20,9 +18,7 @@
   inset: 0;
   z-index: 0;
   border-bottom: 1px solid rgb(255 255 255 / 7%);
-  background:
-    linear-gradient(180deg, rgb(255 255 255 / 9%), rgb(255 255 255 / 2%)),
-    rgb(18 31 50 / 18%);
+  background: linear-gradient(180deg, rgb(255 255 255 / 9%), rgb(255 255 255 / 2%)), rgb(18 31 50 / 18%);
   backdrop-filter: blur(34px) saturate(145%);
   -webkit-backdrop-filter: blur(34px) saturate(145%);
   pointer-events: none;
@@ -102,9 +98,7 @@
   padding: 0.65rem;
   border: 1px solid rgb(148 163 184 / 22%);
   border-radius: 10px;
-  background:
-    linear-gradient(180deg, rgb(22 37 59 / 82%), rgb(9 16 29 / 78%)),
-    rgb(9 16 29 / 78%);
+  background: linear-gradient(180deg, rgb(22 37 59 / 82%), rgb(9 16 29 / 78%)), rgb(9 16 29 / 78%);
   box-shadow:
     0 18px 36px rgb(3 8 16 / 42%),
     inset 0 1px 0 rgb(255 255 255 / 8%);
@@ -192,9 +186,7 @@
   padding: 0.38rem;
   border: 1px solid rgb(148 163 184 / 26%);
   border-radius: 9px;
-  background:
-    linear-gradient(180deg, rgb(18 31 50 / 94%), rgb(9 16 29 / 92%)),
-    rgb(9 16 29 / 92%);
+  background: linear-gradient(180deg, rgb(18 31 50 / 94%), rgb(9 16 29 / 92%)), rgb(9 16 29 / 92%);
   box-shadow:
     0 16px 30px rgb(3 8 16 / 36%),
     inset 0 1px 0 rgb(255 255 255 / 8%);
@@ -276,9 +268,7 @@
     min-width: 13.25rem;
     margin-top: 0;
     padding: 0.45rem;
-    background:
-      linear-gradient(180deg, rgb(18 31 50 / 95%), rgb(9 16 29 / 93%)),
-      rgb(9 16 29 / 93%);
+    background: linear-gradient(180deg, rgb(18 31 50 / 95%), rgb(9 16 29 / 93%)), rgb(9 16 29 / 93%);
     box-shadow:
       0 18px 36px rgb(3 8 16 / 42%),
       inset 0 1px 0 rgb(255 255 255 / 9%);
@@ -314,10 +304,12 @@
   }
 }
 
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .site-header,
-  .site-nav,
-  .site-nav-dropdown-menu {
-    background: rgb(18 31 50 / 96%);
+@supports not (backdrop-filter: blur(1px)) {
+  @supports not (-webkit-backdrop-filter: blur(1px)) {
+    .site-header,
+    .site-nav,
+    .site-nav-dropdown-menu {
+      background: rgb(18 31 50 / 96%);
+    }
   }
 }
