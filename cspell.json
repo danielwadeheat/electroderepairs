@@ -6,11 +6,8 @@
   "files": ["**/*.{html,css,js,md,json}"],
   "words": [
     "ATDS",
-<<<<<<< feat/about-financing-and-proofs
     "ASUS",
     "Alienware",
-=======
->>>>>>> main
     "Chickasaw",
     "codex",
     "copyblock",
