@@ -197,178 +197,253 @@ if (emailTrigger && emailMenu && copyEmailButton) {
   });
 }
 
-const contactTopicField = document.querySelector('.contact-topic-field');
-const nativeTopicSelect = contactTopicField?.querySelector('#topic');
-const customTopic = contactTopicField?.querySelector('[data-contact-topic]');
+function buildCustomTopicFromSelect(contactTopicField, nativeTopicSelect) {
+  const fieldLabel = contactTopicField.querySelector(`label[for='${nativeTopicSelect.id}']`)?.textContent?.trim() || 'option';
+  const defaultOptionText =
+    nativeTopicSelect.querySelector("option[value='']")?.textContent?.trim() || 'Select an option';
 
-if (contactTopicField && nativeTopicSelect && customTopic) {
+  const customTopic = document.createElement('div');
+  customTopic.className = 'contact-topic';
+  customTopic.setAttribute('data-contact-topic', '');
+  customTopic.hidden = true;
+
+  const trigger = document.createElement('button');
+  trigger.className = 'contact-topic-trigger';
+  trigger.type = 'button';
+  trigger.setAttribute('aria-haspopup', 'listbox');
+  trigger.setAttribute('aria-expanded', 'false');
+  trigger.setAttribute('aria-label', `Choose ${fieldLabel.toLowerCase()}`);
+
+  const labelSpan = document.createElement('span');
+  labelSpan.className = 'contact-topic-label';
+  labelSpan.setAttribute('data-contact-topic-label', '');
+  labelSpan.textContent = defaultOptionText;
+
+  const chevron = document.createElement('span');
+  chevron.className = 'contact-topic-chevron';
+  chevron.setAttribute('aria-hidden', 'true');
+
+  trigger.append(labelSpan, chevron);
+
+  const menu = document.createElement('div');
+  menu.className = 'contact-topic-menu';
+  menu.setAttribute('role', 'listbox');
+  menu.hidden = true;
+
+  const selectOptions = Array.from(nativeTopicSelect.options);
+  for (const selectOption of selectOptions) {
+    if (!selectOption.value) {
+      continue;
+    }
+    const optionButton = document.createElement('button');
+    optionButton.className = 'contact-topic-option';
+    optionButton.type = 'button';
+    optionButton.setAttribute('role', 'option');
+    optionButton.setAttribute('data-value', selectOption.value);
+    optionButton.textContent = selectOption.textContent?.trim() || selectOption.value;
+    menu.append(optionButton);
+  }
+
+  customTopic.append(trigger, menu);
+  contactTopicField.append(customTopic);
+  return customTopic;
+}
+
+function enhanceTopicField(contactTopicField) {
+  const nativeTopicSelect = contactTopicField.querySelector('select.contact-select');
+  if (!(nativeTopicSelect instanceof HTMLSelectElement)) {
+    return;
+  }
+
+  let customTopic = contactTopicField.querySelector('[data-contact-topic]');
+  if (!(customTopic instanceof HTMLElement)) {
+    customTopic = buildCustomTopicFromSelect(contactTopicField, nativeTopicSelect);
+  }
+
   const topicTrigger = customTopic.querySelector('.contact-topic-trigger');
   const topicLabel = customTopic.querySelector('[data-contact-topic-label]');
   const topicMenu = customTopic.querySelector('.contact-topic-menu');
   const topicOptions = Array.from(customTopic.querySelectorAll('.contact-topic-option'));
 
-  if (topicTrigger && topicLabel && topicMenu && topicOptions.length > 0) {
-    customTopic.hidden = false;
-    contactTopicField.classList.add('is-topic-enhanced');
+  if (!(topicTrigger instanceof HTMLButtonElement) || !topicLabel || !topicMenu || topicOptions.length === 0) {
+    return;
+  }
 
-    function closeTopicMenu({ focusTrigger = false } = {}) {
-      customTopic.classList.remove('is-open');
-      topicMenu.hidden = true;
-      topicTrigger.setAttribute('aria-expanded', 'false');
-      if (focusTrigger) {
-        topicTrigger.focus();
-      }
+  const defaultLabel =
+    nativeTopicSelect.querySelector("option[value='']")?.textContent?.trim() ||
+    topicLabel.textContent?.trim() ||
+    'Select an option';
+
+  customTopic.hidden = false;
+  contactTopicField.classList.add('is-topic-enhanced');
+
+  function closeTopicMenu({ focusTrigger = false } = {}) {
+    customTopic.classList.remove('is-open');
+    topicMenu.hidden = true;
+    topicTrigger.setAttribute('aria-expanded', 'false');
+    if (focusTrigger) {
+      topicTrigger.focus();
     }
+  }
 
-    function syncTopicUi() {
-      const selectedOption = nativeTopicSelect.selectedOptions[0] || null;
-      const selectedValue = selectedOption?.value || '';
-      const selectedText = selectedOption?.textContent?.trim() || 'Select a topic';
+  function syncTopicUi() {
+    const selectedOption = nativeTopicSelect.selectedOptions[0] || null;
+    const selectedValue = selectedOption?.value || '';
+    const selectedText = selectedOption?.textContent?.trim() || defaultLabel;
 
-      topicLabel.textContent = selectedValue ? selectedText : 'Select a topic';
-      topicTrigger.setAttribute('aria-invalid', String(!selectedValue));
+    topicLabel.textContent = selectedValue ? selectedText : defaultLabel;
+    topicTrigger.setAttribute('aria-invalid', String(nativeTopicSelect.required && !selectedValue));
 
-      topicOptions.forEach((option, index) => {
-        const isSelected = option.dataset.value === selectedValue;
-        option.classList.toggle('is-selected', isSelected);
-        option.setAttribute('aria-selected', String(isSelected));
-        option.tabIndex = isSelected ? 0 : -1;
+    topicOptions.forEach((option, index) => {
+      const isSelected = option.dataset.value === selectedValue;
+      option.classList.toggle('is-selected', isSelected);
+      option.setAttribute('aria-selected', String(isSelected));
+      option.tabIndex = isSelected ? 0 : -1;
 
-        if (!selectedValue && index === 0) {
-          option.tabIndex = 0;
-        }
-      });
-    }
-
-    function openTopicMenu() {
-      customTopic.classList.add('is-open');
-      topicMenu.hidden = false;
-      topicTrigger.setAttribute('aria-expanded', 'true');
-
-      const activeOption = topicOptions.find((option) => option.classList.contains('is-selected')) || topicOptions[0];
-      if (activeOption) {
-        activeOption.focus();
+      if (!selectedValue && index === 0) {
+        option.tabIndex = 0;
       }
-    }
+    });
+  }
 
-    function selectTopic(value) {
-      if (!value) {
-        return;
-      }
-      nativeTopicSelect.value = value;
-      nativeTopicSelect.dispatchEvent(new Event('change', { bubbles: true }));
+  function openTopicMenu() {
+    customTopic.classList.add('is-open');
+    topicMenu.hidden = false;
+    topicTrigger.setAttribute('aria-expanded', 'true');
+
+    const activeOption = topicOptions.find((option) => option.classList.contains('is-selected')) || topicOptions[0];
+    if (activeOption instanceof HTMLButtonElement) {
+      activeOption.focus();
+    }
+  }
+
+  function selectTopic(value) {
+    if (!value) {
+      return;
+    }
+    nativeTopicSelect.value = value;
+    nativeTopicSelect.dispatchEvent(new Event('change', { bubbles: true }));
+    closeTopicMenu({ focusTrigger: true });
+  }
+
+  function moveTopicFocus(step) {
+    const currentIndex = topicOptions.findIndex((option) => option === document.activeElement);
+    const nextIndex = currentIndex < 0 ? 0 : (currentIndex + step + topicOptions.length) % topicOptions.length;
+    const nextOption = topicOptions[nextIndex];
+    if (nextOption instanceof HTMLButtonElement) {
+      nextOption.focus();
+    }
+  }
+
+  syncTopicUi();
+
+  topicTrigger.addEventListener('click', () => {
+    if (topicMenu.hidden) {
+      openTopicMenu();
+      return;
+    }
+    closeTopicMenu();
+  });
+
+  topicTrigger.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openTopicMenu();
+    }
+  });
+
+  topicMenu.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+    const option = target.closest('.contact-topic-option');
+    if (option instanceof HTMLButtonElement) {
+      selectTopic(option.dataset.value || '');
+    }
+  });
+
+  topicMenu.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
       closeTopicMenu({ focusTrigger: true });
+      return;
     }
-
-    function moveTopicFocus(step) {
-      const currentIndex = topicOptions.findIndex((option) => option === document.activeElement);
-      const nextIndex = currentIndex < 0 ? 0 : (currentIndex + step + topicOptions.length) % topicOptions.length;
-      topicOptions[nextIndex]?.focus();
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      moveTopicFocus(1);
+      return;
     }
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      moveTopicFocus(-1);
+      return;
+    }
+    if (event.key === 'Home') {
+      event.preventDefault();
+      topicOptions[0]?.focus();
+      return;
+    }
+    if (event.key === 'End') {
+      event.preventDefault();
+      topicOptions[topicOptions.length - 1]?.focus();
+      return;
+    }
+    if (event.key === 'Enter' || event.key === ' ') {
+      const focusedOption = document.activeElement;
+      if (focusedOption instanceof HTMLButtonElement && focusedOption.classList.contains('contact-topic-option')) {
+        event.preventDefault();
+        selectTopic(focusedOption.dataset.value || '');
+      }
+    }
+  });
 
-    syncTopicUi();
+  nativeTopicSelect.addEventListener('change', syncTopicUi);
 
-    topicTrigger.addEventListener('click', () => {
-      if (topicMenu.hidden) {
-        openTopicMenu();
+  const topicForm = nativeTopicSelect.form;
+  if (topicForm) {
+    topicForm.addEventListener('submit', (event) => {
+      if (!nativeTopicSelect.required || nativeTopicSelect.value) {
         return;
       }
+      event.preventDefault();
+      openTopicMenu();
+    });
+
+    topicForm.addEventListener('reset', () => {
+      window.setTimeout(syncTopicUi, 0);
+    });
+  }
+
+  customTopic.addEventListener('focusout', () => {
+    window.setTimeout(() => {
+      if (!customTopic.contains(document.activeElement)) {
+        closeTopicMenu();
+      }
+    }, 0);
+  });
+
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof Node)) {
+      return;
+    }
+    if (!customTopic.contains(target)) {
       closeTopicMenu();
-    });
-
-    topicTrigger.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        openTopicMenu();
-      }
-    });
-
-    topicMenu.addEventListener('click', (event) => {
-      const target = event.target;
-      if (!(target instanceof HTMLElement)) {
-        return;
-      }
-      const option = target.closest('.contact-topic-option');
-      if (option instanceof HTMLButtonElement) {
-        selectTopic(option.dataset.value || '');
-      }
-    });
-
-    topicMenu.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        event.preventDefault();
-        closeTopicMenu({ focusTrigger: true });
-        return;
-      }
-      if (event.key === 'ArrowDown') {
-        event.preventDefault();
-        moveTopicFocus(1);
-        return;
-      }
-      if (event.key === 'ArrowUp') {
-        event.preventDefault();
-        moveTopicFocus(-1);
-        return;
-      }
-      if (event.key === 'Home') {
-        event.preventDefault();
-        topicOptions[0]?.focus();
-        return;
-      }
-      if (event.key === 'End') {
-        event.preventDefault();
-        topicOptions[topicOptions.length - 1]?.focus();
-        return;
-      }
-      if (event.key === 'Enter' || event.key === ' ') {
-        const focusedOption = document.activeElement;
-        if (focusedOption instanceof HTMLButtonElement && focusedOption.classList.contains('contact-topic-option')) {
-          event.preventDefault();
-          selectTopic(focusedOption.dataset.value || '');
-        }
-      }
-    });
-
-    nativeTopicSelect.addEventListener('change', syncTopicUi);
-
-    const contactForm = nativeTopicSelect.form;
-    if (contactForm) {
-      contactForm.addEventListener('submit', (event) => {
-        if (nativeTopicSelect.value) {
-          return;
-        }
-        event.preventDefault();
-        openTopicMenu();
-      });
-
-      contactForm.addEventListener('reset', () => {
-        window.setTimeout(syncTopicUi, 0);
-      });
     }
+  });
 
-    customTopic.addEventListener('focusout', () => {
-      window.setTimeout(() => {
-        if (!customTopic.contains(document.activeElement)) {
-          closeTopicMenu();
-        }
-      }, 0);
-    });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeTopicMenu();
+    }
+  });
+}
 
-    document.addEventListener('click', (event) => {
-      const target = event.target;
-      if (!(target instanceof Node)) {
-        return;
-      }
-      if (!customTopic.contains(target)) {
-        closeTopicMenu();
-      }
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        closeTopicMenu();
-      }
-    });
+const contactTopicFields = Array.from(document.querySelectorAll('.contact-topic-field'));
+for (const contactTopicField of contactTopicFields) {
+  if (contactTopicField instanceof HTMLElement) {
+    enhanceTopicField(contactTopicField);
   }
 }
 

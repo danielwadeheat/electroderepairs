@@ -16,7 +16,7 @@ body {
 body::before {
   content: '';
   position: fixed;
-  top: clamp(6.9rem, 11vw, 8.6rem);
+  top: clamp(4.95rem, 8.5vw, 6.45rem);
   right: max(1rem, calc((100vw - 960px) / 2 + 1rem));
   height: clamp(13.5rem, 36vw, 24rem);
   aspect-ratio: 1 / 1;
@@ -43,7 +43,6 @@ body::before {
   padding: 1.25rem;
   padding-right: clamp(1.25rem, 36vw, 14rem);
   margin-top: 0.75rem;
-  text-align: center;
 }
 
 .hero::before {
@@ -53,6 +52,10 @@ body::before {
 .hero > * {
   position: relative;
   z-index: 4;
+}
+
+.hero-nowrap {
+  white-space: nowrap;
 }
 
 .service-hub,
@@ -75,7 +78,6 @@ p {
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 0.65rem;
   margin-top: 1rem;
 }
@@ -138,7 +140,7 @@ p {
 }
 
 .service-hub {
-  margin-top: 1.5rem;
+  margin-top: 0;
   padding: 1.25rem;
   border: 1px solid #1f2937;
   border-radius: 12px;

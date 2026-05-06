@@ -22,6 +22,7 @@ module.exports = [
         Event: 'readonly',
         HTMLButtonElement: 'readonly',
         HTMLElement: 'readonly',
+        HTMLSelectElement: 'readonly',
         navigator: 'readonly',
         Node: 'readonly',
         URL: 'readonly',
