@@ -16,9 +16,9 @@ body {
 body::before {
   content: '';
   position: fixed;
-  top: clamp(4.95rem, 8.5vw, 6.45rem);
-  right: max(1rem, calc((100vw - 960px) / 2 + 1rem));
-  height: clamp(13.5rem, 36vw, 24rem);
+  top: clamp(4.45rem, 7.8vw, 5.95rem);
+  right: max(-0.35rem, calc((100vw - 960px) / 2 - 0.35rem));
+  height: clamp(13rem, 34vw, 19rem);
   aspect-ratio: 1 / 1;
   background: url('../assets/images/circuit_integration.webp') center / cover no-repeat;
   opacity: 1;
@@ -40,9 +40,8 @@ body::before {
   border: 0;
   border-radius: 12px;
   box-shadow: none;
-  padding: 1.25rem;
-  padding-right: clamp(1.25rem, 36vw, 14rem);
-  margin-top: 0.75rem;
+  padding: 1rem 1.25rem 1.25rem;
+  margin-top: 0;
 }
 
 .hero::before {
@@ -70,9 +69,17 @@ h1 {
   font-size: clamp(1.55rem, 7vw, 2rem);
 }
 
+.hero h1 {
+  max-width: 17ch;
+}
+
 p {
   margin: 0;
   color: var(--muted);
+}
+
+.hero-intro {
+  max-width: none;
 }
 
 .hero-actions {

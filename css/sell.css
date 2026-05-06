@@ -6,7 +6,7 @@
 }
 
 .sell-main {
-  width: min(1120px, 100% - 2rem);
+  width: min(1120px, 100% - 1rem);
   margin: 0 auto;
   padding: 1.1rem 0 2.2rem;
   display: grid;
@@ -38,7 +38,7 @@
     inset 0 1px 0 rgb(148 163 184 / 14%),
     0 18px 34px rgb(3 8 16 / 30%);
   padding: 1.25rem;
-  padding-right: clamp(1.25rem, 42vw, 18rem);
+  padding-right: clamp(0.65rem, 16vw, 3.25rem);
   overflow: clip;
 }
 
@@ -62,14 +62,15 @@
 .sell-hero-copy h1 {
   margin: 0.45rem 0 0;
   font-size: clamp(1.58rem, 6.2vw, 2.35rem);
-  line-height: 1.13;
-  max-width: 21ch;
+  line-height: 1.08;
+  max-width: none;
 }
 
 .sell-hero-intro {
   margin: 0.82rem 0 0;
   color: #c7d5e6;
-  max-width: 60ch;
+  max-width: none;
+  line-height: 1.4;
 }
 
 .sell-hero-actions {
@@ -130,6 +131,24 @@
   box-shadow:
     0 0 0 1px rgb(95 164 217 / 28%),
     0 10px 20px rgb(9 18 31 / 35%);
+}
+
+.sell-cta-call {
+  display: inline-grid;
+  justify-items: center;
+  line-height: 1.2;
+  text-align: center;
+  min-width: 10.1rem;
+  padding-inline: 0.72rem;
+}
+
+.sell-call-label,
+.sell-call-number {
+  display: block;
+}
+
+.sell-call-number {
+  white-space: nowrap;
 }
 
 .sell-payout {
@@ -315,6 +334,7 @@
 
 @media (width >= 820px) {
   .sell-main {
+    width: min(1120px, 100% - 2rem);
     padding: 1.4rem 0 2.4rem;
     gap: 1.2rem;
   }
@@ -324,6 +344,35 @@
   .sell-value,
   .sell-form-section {
     padding: 1.7rem;
+  }
+
+  .sell-hero {
+    padding-right: clamp(1.25rem, 42vw, 18rem);
+  }
+
+  .sell-hero-copy h1 {
+    line-height: 1.13;
+    max-width: 21ch;
+  }
+
+  .sell-hero-intro {
+    max-width: 60ch;
+  }
+
+  .sell-cta-call {
+    display: inline-block;
+    min-width: 0;
+    line-height: inherit;
+    text-align: left;
+  }
+
+  .sell-call-label,
+  .sell-call-number {
+    display: inline;
+  }
+
+  .sell-call-label::after {
+    content: ' ';
   }
 
   .sell-payout-grid,

@@ -6,7 +6,7 @@
 }
 
 .buy-main {
-  width: min(1120px, 100% - 2rem);
+  width: min(1120px, 100% - 1rem);
   margin: 0 auto;
   padding: 1.1rem 0 2.2rem;
   display: grid;
@@ -38,7 +38,7 @@
     inset 0 1px 0 rgb(148 163 184 / 14%),
     0 18px 34px rgb(3 8 16 / 30%);
   padding: 1.25rem;
-  padding-right: clamp(1.25rem, 42vw, 18rem);
+  padding-right: clamp(0.65rem, 16vw, 3.25rem);
   overflow: clip;
 }
 
@@ -62,14 +62,15 @@
 .buy-hero-copy h1 {
   margin: 0.45rem 0 0;
   font-size: clamp(1.58rem, 6.2vw, 2.35rem);
-  line-height: 1.13;
-  max-width: 22ch;
+  line-height: 1.08;
+  max-width: none;
 }
 
 .buy-hero-intro {
   margin: 0.82rem 0 0;
   color: #c7d5e6;
-  max-width: 60ch;
+  max-width: none;
+  line-height: 1.4;
 }
 
 .buy-hero-actions {
@@ -130,6 +131,24 @@
   box-shadow:
     0 0 0 1px rgb(95 164 217 / 28%),
     0 10px 20px rgb(9 18 31 / 35%);
+}
+
+.buy-cta-call {
+  display: inline-grid;
+  justify-items: center;
+  line-height: 1.2;
+  text-align: center;
+  min-width: 10.1rem;
+  padding-inline: 0.72rem;
+}
+
+.buy-call-label,
+.buy-call-number {
+  display: block;
+}
+
+.buy-call-number {
+  white-space: nowrap;
 }
 
 .buy-value {
@@ -262,12 +281,25 @@
   .buy-main {
     padding: 1.4rem 0 2.4rem;
     gap: 1.2rem;
+    width: min(1120px, 100% - 2rem);
   }
 
   .buy-hero,
   .buy-value,
   .buy-form-section {
     padding: 1.7rem;
+  }
+
+  .buy-hero {
+    padding-right: clamp(1.25rem, 42vw, 18rem);
+  }
+
+  .buy-hero-copy h1 {
+    max-width: 34ch;
+  }
+
+  .buy-hero-intro {
+    max-width: 80ch;
   }
 
   .buy-value-grid {
@@ -283,5 +315,21 @@
 
   .buy-form-card {
     padding: 1.15rem;
+  }
+
+  .buy-cta-call {
+    display: inline-block;
+    min-width: 0;
+    line-height: inherit;
+    text-align: left;
+  }
+
+  .buy-call-label,
+  .buy-call-number {
+    display: inline;
+  }
+
+  .buy-call-label::after {
+    content: ' ';
   }
 }

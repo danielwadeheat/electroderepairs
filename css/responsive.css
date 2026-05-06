@@ -1,6 +1,12 @@
 /* Desktop and large-tablet layout overrides */
 
 @media (width >= 768px) {
+  body::before {
+    top: clamp(4.95rem, 8.5vw, 6.45rem);
+    right: max(1rem, calc((100vw - 960px) / 2 + 1rem));
+    height: clamp(13.5rem, 36vw, 24rem);
+  }
+
   .container {
     max-width: 960px;
     padding: 2rem 1rem;
@@ -14,6 +20,10 @@
 
   h1 {
     font-size: clamp(1.8rem, 3vw, 2.5rem);
+  }
+
+  .hero h1 {
+    max-width: none;
   }
 
   .service-hub {

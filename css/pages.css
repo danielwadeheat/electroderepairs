@@ -32,8 +32,8 @@
   position: sticky;
   top: 0;
   z-index: 20;
-  border-bottom: 1px solid #1f2937;
-  background: rgb(11 18 32 / 88%);
+  border-bottom: 1px solid rgb(76 125 176 / 34%);
+  background: linear-gradient(180deg, rgb(26 57 94 / 62%) 0%, rgb(15 39 68 / 52%) 100%), rgb(12 30 53 / 68%);
   backdrop-filter: blur(10px);
 }
 
