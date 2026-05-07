@@ -26,6 +26,10 @@
   text-transform: uppercase;
 }
 
+.sell-quote-kicker {
+  color: #7dd3fc;
+}
+
 .sell-hero {
   position: relative;
   border: 1px solid #1f2d43;
@@ -78,6 +82,12 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
+}
+
+.sell-hero-actions .button-dot-orbit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sell-cta {
@@ -301,6 +311,10 @@
   max-width: 58ch;
 }
 
+.sell-form-copy .sell-kicker {
+  color: #7dd3fc;
+}
+
 .sell-form-image {
   display: block;
   margin-top: 0.9rem;
@@ -364,22 +378,6 @@
 
   .sell-hero-intro {
     max-width: 60ch;
-  }
-
-  .sell-cta-call {
-    display: inline-block;
-    min-width: 0;
-    line-height: inherit;
-    text-align: left;
-  }
-
-  .sell-call-label,
-  .sell-call-number {
-    display: inline;
-  }
-
-  .sell-call-label::after {
-    content: ' ';
   }
 
   .sell-payout-grid,
