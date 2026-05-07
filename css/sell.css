@@ -301,6 +301,13 @@
   max-width: 58ch;
 }
 
+.sell-form-image {
+  display: block;
+  margin-top: 0.9rem;
+  width: min(100%, 420px);
+  height: auto;
+}
+
 .sell-form-copy a {
   color: #9dd8ff;
   text-underline-offset: 2px;
@@ -389,5 +396,9 @@
 
   .sell-form-card {
     padding: 1.15rem;
+  }
+
+  .sell-form-image {
+    width: min(100%, 460px);
   }
 }
