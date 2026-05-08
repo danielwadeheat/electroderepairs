@@ -198,7 +198,8 @@ if (emailTrigger && emailMenu && copyEmailButton) {
 }
 
 function buildCustomTopicFromSelect(contactTopicField, nativeTopicSelect) {
-  const fieldLabel = contactTopicField.querySelector(`label[for='${nativeTopicSelect.id}']`)?.textContent?.trim() || 'option';
+  const fieldLabel =
+    contactTopicField.querySelector(`label[for='${nativeTopicSelect.id}']`)?.textContent?.trim() || 'option';
   const defaultOptionText =
     nativeTopicSelect.querySelector("option[value='']")?.textContent?.trim() || 'Select an option';
 
