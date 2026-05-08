@@ -1,3 +1,6 @@
+/* Repairs Page (Flow: shell -> shared tokens -> hero -> process -> quote widget -> assurance) */
+
+/* Page Shell */
 .repair-body {
   margin: 0;
   min-height: 100svh;
@@ -13,10 +16,11 @@
   gap: 1rem;
 }
 
-#instant-quote {
+.quote-workbench {
   scroll-margin-top: 8.5rem;
 }
 
+/* Shared Repair UI Tokens */
 .repair-kicker {
   margin: 0;
   color: #7dd3fc;
@@ -90,6 +94,7 @@
   display: block;
 }
 
+/* Hero */
 .repair-hero {
   position: relative;
   border: 1px solid #1f2d43;
@@ -155,6 +160,7 @@
   height: 100%;
 }
 
+/* Process Panel */
 .repair-flow {
   border: 1px solid #1f2d43;
   border-radius: 14px;
@@ -217,6 +223,7 @@
   color: #bfd0e2;
 }
 
+/* Quote Workbench */
 .repair-visual {
   margin: 0;
 }
@@ -381,7 +388,7 @@
   gap: 0.7rem;
 }
 
-#quote-model-context-image {
+.quote-model-context-image {
   width: 9.4rem;
   height: 9.4rem;
   object-fit: contain;
@@ -423,7 +430,7 @@
     transform 0.2s ease;
 }
 
-#quote-device-grid .quote-choice {
+.quote-choice-grid-device .quote-choice {
   grid-template-columns: 1fr;
   align-content: start;
   text-align: center;
@@ -463,7 +470,7 @@
   overflow: hidden;
 }
 
-#quote-device-grid .quote-choice-media {
+.quote-choice-grid-device .quote-choice-media {
   width: 6.6rem;
   height: 6.6rem;
   margin-inline: auto;
@@ -480,7 +487,7 @@
   line-height: 1.3;
 }
 
-#quote-device-grid .quote-choice-label {
+.quote-choice-grid-device .quote-choice-label {
   font-size: 0.84rem;
 }
 
@@ -612,19 +619,17 @@
   justify-content: flex-end;
 }
 
-#quote-back-btn,
-#quote-next-btn,
-#quote-final-back-btn,
-#quote-submit-btn {
+.quote-nav button,
+.quote-final-actions button {
   cursor: pointer;
 }
 
 .quote-nav[hidden] {
-  display: none !important;
+  display: none;
 }
 
 .quote-nav button[hidden] {
-  display: none !important;
+  display: none;
 }
 
 .quote-final-actions {
@@ -647,6 +652,7 @@
   border: 0;
 }
 
+/* Assurance Panel */
 .repair-assurance {
   border: 1px solid #1f2d43;
   border-radius: 14px;
@@ -737,6 +743,7 @@
   }
 }
 
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .repair-hero-copy {
     animation: none;

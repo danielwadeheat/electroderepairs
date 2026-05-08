@@ -5,11 +5,15 @@
   "main": "script.js",
   "scripts": {
     "lint": "npm run lint:js && npm run lint:html && npm run lint:css && npm run spellcheck",
-    "lint:js": "eslint \"**/*.js\"",
+    "lint:js": "eslint \"**/*.js\" --ignore-pattern \"**/*.min.js\"",
     "lint:html": "eslint \"**/*.html\"",
-    "lint:css": "eslint \"**/*.css\"",
+    "lint:css": "eslint \"**/*.css\" --ignore-pattern \"**/*.min.css\"",
     "lint:fix": "npm run lint:js -- --fix && npm run lint:html -- --fix && npm run lint:css -- --fix",
-    "format:check": "prettier --check \"**/*.{html,css,js,md,json}\"",
+    "build": "npm run build:images && npm run build:css && npm run build:js",
+    "build:images": "node tools/optimize-assets.js",
+    "build:css": "cleancss -O1 -o css/base.min.css css/base.css && cleancss -O1 -o css/header.min.css css/header.css && cleancss -O1 -o css/pages.min.css css/pages.css && cleancss -O1 -o css/home.min.css css/home.css && cleancss -O1 -o css/footer.min.css css/footer.css && cleancss -O1 -o css/responsive.min.css css/responsive.css && cleancss -O1 -o css/buy.min.css css/buy.css && cleancss -O1 -o css/sell.min.css css/sell.css && cleancss -O1 -o css/repairs.min.css css/repairs.css",
+    "build:js": "terser script.js --compress --mangle --output script.min.js",
+    "format:check": "prettier --check \"**/*.{html,css,js,md,json}\" \"!**/*.min.css\" \"!**/*.min.js\" \"!qa/lighthouse/**\"",
     "spellcheck": "cspell --no-progress --show-suggestions \"**/*.{html,css,js,md,json}\""
   },
   "repository": {
@@ -25,13 +29,18 @@
   },
   "homepage": "https://github.com/danielwadeheat/ElectrodeRepairs#readme",
   "devDependencies": {
+    "@axe-core/cli": "^4.11.3",
     "@eslint/css": "^1.1.0",
     "@eslint/js": "^9.25.1",
     "@html-eslint/eslint-plugin": "^0.59.0",
     "@html-eslint/parser": "^0.59.0",
+    "clean-css-cli": "^5.6.3",
     "cspell": "^10.0.0",
     "eslint": "^9.25.1",
     "eslint-config-prettier": "^10.1.8",
-    "prettier": "^3.8.3"
+    "lighthouse": "^13.3.0",
+    "prettier": "^3.8.3",
+    "sharp": "^0.34.5",
+    "terser": "^5.47.1"
   }
 }

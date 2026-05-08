@@ -1,3 +1,6 @@
+/* Buy Page (Flow: shell -> shared tokens -> hero -> value props -> lead form) */
+
+/* Page Shell */
 .buy-body {
   margin: 0;
   min-height: 100svh;
@@ -13,10 +16,11 @@
   gap: 1rem;
 }
 
-#buy-form {
+.buy-form-section {
   scroll-margin-top: 8.5rem;
 }
 
+/* Shared Buy UI Tokens */
 .buy-kicker {
   margin: 0;
   color: #7dd3fc;
@@ -26,6 +30,7 @@
   text-transform: uppercase;
 }
 
+/* Hero */
 .buy-hero {
   position: relative;
   border: 1px solid #1f2d43;
@@ -49,7 +54,7 @@
   right: 0;
   height: 100%;
   aspect-ratio: 1 / 1;
-  background: url('../assets/images/circuit_integration.webp') right center / 100% 100% no-repeat;
+  background: url('../assets/images/circuit-integration-640.webp') right center / 100% 100% no-repeat;
   pointer-events: none;
   opacity: 1;
 }
@@ -148,15 +153,16 @@
   padding-inline: 0.72rem;
 }
 
-.buy-call-label,
-.buy-call-number {
+.buy-call-label {
   display: block;
 }
 
 .buy-call-number {
+  display: block;
   white-space: nowrap;
 }
 
+/* Value Props */
 .buy-value {
   border: 1px solid #23344e;
   border-radius: 14px;
@@ -255,6 +261,7 @@
   line-height: 1.5;
 }
 
+/* Lead Form */
 .buy-form-section {
   border: 1px solid #1f2d43;
   border-radius: 14px;

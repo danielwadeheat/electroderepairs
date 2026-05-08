@@ -15,15 +15,16 @@
     <meta name="robots" content="index, follow" />
 
     <link rel="canonical" href="https://danielwadeheat.github.io/ElectrodeRepairs/" />
-    <link rel="icon" href="/assets/images/favicon-48x48.png?v=2" sizes="48x48" />
-    <link rel="icon" href="/assets/images/favicon.svg?v=2" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?v=2" />
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/pages.css" />
-    <link rel="stylesheet" href="css/header.css" />
-    <link rel="stylesheet" href="css/home.css" />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="icon" href="assets/images/favicon-48x48.png?v=2" sizes="48x48" />
+    <link rel="icon" href="assets/images/favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png?v=2" />
+    <link rel="preload" href="assets/images/circuit-integration-640.webp" as="image" fetchpriority="high" />
+    <link rel="stylesheet" href="css/base.min.css" />
+    <link rel="stylesheet" href="css/header.min.css" />
+    <link rel="stylesheet" href="css/home.min.css" />
+    <link rel="stylesheet" href="css/footer.min.css" media="print" onload="this.media = 'all'" />
+    <link rel="stylesheet" href="css/responsive.min.css" media="(min-width: 768px)" />
+    <noscript><link rel="stylesheet" href="css/footer.min.css" /></noscript>
     <link rel="me" href="https://www.instagram.com/electrode_repairs/" />
     <link rel="me" href="https://www.facebook.com/ElectrodeRepairs" />
 
@@ -38,16 +39,33 @@
       property="og:image"
       content="https://danielwadeheat.github.io/ElectrodeRepairs/assets/images/building_front.jpg" />
     <meta property="og:site_name" content="Electrode Repairs" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:image:alt" content="Electrode Repairs storefront in Newcastle, Oklahoma" />
     <meta property="og:see_also" content="https://www.instagram.com/electrode_repairs/" />
     <meta property="og:see_also" content="https://www.facebook.com/ElectrodeRepairs" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@electrode_repairs" />
+    <meta name="twitter:title" content="Electrode Repairs | Home" />
+    <meta
+      name="twitter:description"
+      content="Electrode Repairs provides expert phone, computer, tablet, and game console repair in Newcastle, OK.  Get help with repairs, buy or sell devices, explore financing, or contact the shop today." />
+    <meta
+      name="twitter:image"
+      content="https://danielwadeheat.github.io/ElectrodeRepairs/assets/images/building_front.jpg" />
+    <meta name="twitter:image:alt" content="Electrode Repairs storefront in Newcastle, Oklahoma" />
   </head>
 
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="simple-header" data-site-header>
       <div class="legal-container simple-header-inner">
         <a href="index.html" class="simple-logo-link" aria-label="Electrode Repairs home">
-          <img class="simple-logo" src="assets/images/logo.png" alt="Electrode Repairs logo" />
+          <img
+            class="simple-logo"
+            src="assets/images/logo-512.webp"
+            alt="Electrode Repairs logo"
+            width="512"
+            height="192" />
         </a>
 
         <button
@@ -93,15 +111,15 @@
       </div>
     </header>
 
-    <main class="container">
+    <main id="main-content" class="container">
       <section class="hero">
         <h1>Reliable Electronics Repair Services in Newcastle, OK</h1>
         <p class="hero-intro">
           Fast turnaround, consistent quality, and trusted support for all types<br />of electronics
         </p>
         <div class="hero-actions">
-          <a class="cta button-dot-orbit" href="/repairs.html">Start A Repair</a>
-          <a class="cta cta-secondary" href="/contact.html">Contact Us</a>
+          <a class="cta button-dot-orbit" href="repairs.html">Start A Repair</a>
+          <a class="cta cta-secondary" href="contact.html">Contact Us</a>
         </div>
       </section>
       <section class="service-hub" aria-labelledby="service-hub-title">
@@ -109,15 +127,15 @@
         <h2 id="service-hub-title">What do you need help with?</h2>
         <p class="service-intro">Pick a service path and we will connect you with the right support quickly.</p>
         <div class="service-cards">
-          <a href="/repairs.html" class="service-card">
+          <a href="repairs.html" class="service-card">
             <span class="service-label">Repair a Device</span>
             <span class="service-arrow">→</span>
           </a>
-          <a href="/buy.html" class="service-card">
+          <a href="buy.html" class="service-card">
             <span class="service-label">Buy a Device</span>
             <span class="service-arrow">→</span>
           </a>
-          <a href="/sell.html" class="service-card">
+          <a href="sell.html" class="service-card">
             <span class="service-label">Sell a Device</span>
             <span class="service-arrow">→</span>
           </a>
@@ -129,7 +147,7 @@
             <span class="service-label">Financing</span>
             <span class="service-arrow">→</span>
           </a>
-          <a href="/contact.html" class="service-card">
+          <a href="contact.html" class="service-card">
             <span class="service-label">Contact Us</span>
             <span class="service-arrow">→</span>
           </a>
@@ -171,7 +189,7 @@
           </article>
         </div>
         <div class="why-us-actions">
-          <a class="cta cta-secondary why-us-cta button-dot-orbit" href="/about.html">Learn About Electrode Repairs</a>
+          <a class="cta cta-secondary why-us-cta button-dot-orbit" href="about.html">Learn About Electrode Repairs</a>
         </div>
       </section>
       <section class="reviews" aria-labelledby="reviews-title">
@@ -320,9 +338,10 @@
         <div class="main-footer-logo-wrap">
           <img
             class="main-footer-logo"
-            src="assets/images/logo_negative.png"
+            src="assets/images/logo-negative-512.webp"
             alt="Electrode Repairs mark"
-            width="156" />
+            width="512"
+            height="192" />
         </div>
         <address class="main-footer-contact" aria-label="Electrode Repairs address and phone">
           <a class="main-footer-contact-link main-footer-phone" href="tel:+14052686305">(405) 268-6305</a>
@@ -391,6 +410,6 @@
         </div>
       </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="script.min.js" defer></script>
   </body>
 </html>

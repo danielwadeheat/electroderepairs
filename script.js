@@ -115,6 +115,11 @@ if (siteHeader && navToggle && siteNav) {
 }
 
 if (serviceMenu && serviceToggle) {
+  if (!serviceMenu.id) {
+    serviceMenu.id = 'site-services-menu';
+  }
+  serviceToggle.setAttribute('aria-controls', serviceMenu.id);
+
   serviceToggle.addEventListener('click', () => {
     const serviceIsOpen = serviceMenu.classList.toggle('is-open');
     serviceToggle.setAttribute('aria-expanded', String(serviceIsOpen));
@@ -1448,7 +1453,6 @@ if (modernQuoteForm) {
     nextBtn.hidden = state.step === 5;
     if (nav) {
       nav.hidden = state.step === 5;
-      nav.style.display = state.step === 5 ? 'none' : 'flex';
     }
     persistQuoteState();
   }

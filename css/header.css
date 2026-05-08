@@ -1,3 +1,30 @@
+/* Main Site Header (Flow: shell -> mobile toggle -> mobile panel -> shared links -> dropdown) */
+
+/* Skip Link */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0.75rem;
+  z-index: 120;
+  padding: 0.62rem 0.8rem;
+  border: 1px solid rgb(125 211 252 / 72%);
+  border-radius: 8px;
+  color: #f8fbff;
+  text-decoration: none;
+  background: linear-gradient(180deg, rgb(26 57 94 / 96%), rgb(15 39 68 / 96%));
+  box-shadow:
+    0 10px 18px rgb(3 8 16 / 42%),
+    inset 0 1px 0 rgb(255 255 255 / 14%);
+  transform: translateY(-130%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0.55rem);
+}
+
+/* Header Shell */
 .site-header {
   position: sticky;
   top: 0;
@@ -52,6 +79,41 @@
   filter: drop-shadow(0 5px 12px rgb(3 8 16 / 32%));
 }
 
+/* Shared Simple Header */
+.legal-container {
+  width: min(980px, 100% - 2rem);
+  margin-inline: auto;
+}
+
+.simple-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid rgb(76 125 176 / 34%);
+  background: linear-gradient(180deg, rgb(26 57 94 / 62%) 0%, rgb(15 39 68 / 52%) 100%), rgb(12 30 53 / 68%);
+  backdrop-filter: blur(10px);
+}
+
+.simple-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+  padding: 0.85rem 0;
+}
+
+.simple-logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.simple-logo {
+  width: clamp(138px, 35vw, 188px);
+  height: auto;
+}
+
+/* Mobile Nav Toggle */
 .site-nav-toggle {
   width: 2.75rem;
   height: 2.75rem;
@@ -91,6 +153,7 @@
   transform: translateY(-6px) rotate(-45deg);
 }
 
+/* Mobile Nav Panel */
 .site-nav {
   position: absolute;
   top: calc(100% + 0.5rem);
@@ -125,6 +188,7 @@
   visibility: visible;
 }
 
+/* Shared Nav Links */
 .site-nav-link,
 .site-nav-dropdown-link {
   min-height: 2.65rem;
@@ -169,6 +233,7 @@
     0 0 0 1px rgb(95 164 217 / 32%);
 }
 
+/* Services Dropdown */
 .site-nav-dropdown {
   position: relative;
 }
@@ -220,6 +285,7 @@
   font-weight: 620;
 }
 
+/* Backdrop Fallback */
 @supports not (backdrop-filter: blur(1px)) {
   @supports not (-webkit-backdrop-filter: blur(1px)) {
     .site-header,

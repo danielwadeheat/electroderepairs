@@ -2,7 +2,14 @@
   "version": "0.2",
   "language": "en",
   "useGitignore": true,
-  "ignorePaths": ["node_modules/**", "package-lock.json", "assets/images/**"],
+  "ignorePaths": [
+    "node_modules/**",
+    "package-lock.json",
+    "assets/images/**",
+    "qa/lighthouse/**",
+    "**/*.min.css",
+    "**/*.min.js"
+  ],
   "files": ["**/*.{html,css,js,md,json}"],
   "words": [
     "haspopup",
@@ -10,6 +17,7 @@
     "ASUS",
     "Alienware",
     "Chickasaw",
+    "cleancss",
     "codex",
     "copyblock",
     "Electrode",

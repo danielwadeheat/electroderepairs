@@ -1,5 +1,8 @@
-/* Mobile-first styles for pages other than home, that are not fully universal live here */
+/* Non-Home Shared Pages (Flow: shared legal/header -> about -> shared reviews -> contact) */
 
+/* Mobile-First Styles For Non-Home Pages */
+
+/* Base + Layout */
 * {
   box-sizing: border-box;
 }
@@ -28,6 +31,7 @@
   padding: 1.25rem 1rem;
 }
 
+/* Shared Page Header */
 .simple-header {
   position: sticky;
   top: 0;
@@ -90,6 +94,7 @@
   color: #eff6ff;
 }
 
+/* Legal Pages */
 .legal-main {
   padding: 1.1rem 0 2.2rem;
 }
@@ -147,7 +152,7 @@
   color: #eef3fb;
 }
 
-/* About page */
+/* About Page */
 .about-main {
   padding: 1.1rem 0 2.2rem;
 }
@@ -293,7 +298,7 @@
   gap: 1rem;
 }
 
-/* Reviews section reused for About page */
+/* Reviews Section (Reused On About Page) */
 .reviews {
   margin-top: 0.25rem;
   padding: 1.25rem;
@@ -466,7 +471,7 @@
   }
 }
 
-/* Legal Footer (Privacy + Terms pages) */
+/* Legal Footer (Privacy + Terms Pages) */
 .legal-footer {
   margin-top: auto;
   border-top: 1px solid #1f2937;
@@ -637,7 +642,7 @@
   transform: translateY(0);
 }
 
-/* Contact page */
+/* Contact Page */
 .contact-body {
   margin: 0;
   min-height: 100svh;

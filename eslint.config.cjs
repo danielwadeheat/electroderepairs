@@ -31,6 +31,16 @@ module.exports = [
     },
   },
   {
+    files: ['tools/**/*.js'],
+    languageOptions: {
+      globals: {
+        console: 'readonly',
+        process: 'readonly',
+        require: 'readonly',
+      },
+    },
+  },
+  {
     files: ['**/*.html'],
     plugins: {
       '@html-eslint': html,

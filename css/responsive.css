@@ -1,6 +1,8 @@
-/* Desktop and large-tablet layout overrides */
+/* Responsive Layout Overrides
+   Organized by breakpoint, then by page/section flow. */
 
 @media (width >= 768px) {
+  /* Home */
   body::before {
     top: clamp(4.95rem, 8.5vw, 6.45rem);
     right: max(1rem, calc((100vw - 960px) / 2 + 1rem));
@@ -102,6 +104,7 @@
     right: 0;
   }
 
+  /* About + Legal + Shared Simple Header */
   .about-main {
     padding: 1.7rem 0 2.7rem;
   }
@@ -186,6 +189,7 @@
     padding: 1.1rem 0 1.3rem;
   }
 
+  /* Repairs */
   .repair-hero-actions .button-dot-orbit {
     display: inline-flex;
     align-items: center;
@@ -264,7 +268,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  #quote-device-grid .quote-choice-media {
+  .quote-choice-grid-device .quote-choice-media {
     width: 7.1rem;
     height: 7.1rem;
   }
@@ -279,6 +283,7 @@
 }
 
 @media (width >= 820px) {
+  /* Main Site Header / Navigation */
   .site-header-inner {
     min-height: 5.2rem;
     gap: 1.25rem;
@@ -353,6 +358,7 @@
     height: 0.58rem;
   }
 
+  /* Buy Page */
   .buy-main {
     padding: 1.4rem 0 2.4rem;
     gap: 1.2rem;
@@ -411,6 +417,7 @@
     padding: 1.15rem;
   }
 
+  /* Sell Page */
   .sell-main {
     width: min(1120px, 100% - 2rem);
     padding: 1.4rem 0 2.4rem;
@@ -459,6 +466,7 @@
 }
 
 @media (width >= 900px) {
+  /* Contact Page */
   .contact-main {
     padding: 1.7rem 0 2.7rem;
   }
@@ -501,6 +509,7 @@
 }
 
 @media (width >= 980px) {
+  /* Main Site Header / Navigation (Wide Desktop) */
   .site-nav {
     gap: 0.48rem;
   }
@@ -512,6 +521,7 @@
 }
 
 @media (width <= 900px) and (orientation: portrait) {
+  /* Contact Footer (Portrait Tablet) */
   .contact-footer-inner {
     grid-template-areas:
       'logo'

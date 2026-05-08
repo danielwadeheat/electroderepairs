@@ -1,3 +1,6 @@
+/* Sell Page (Flow: shell -> shared tokens -> hero -> payout -> value props -> lead form) */
+
+/* Page Shell */
 .sell-body {
   margin: 0;
   min-height: 100svh;
@@ -13,10 +16,11 @@
   gap: 1rem;
 }
 
-#sell-form {
+.sell-form-section {
   scroll-margin-top: 8.5rem;
 }
 
+/* Shared Sell UI Tokens */
 .sell-kicker {
   margin: 0;
   color: #7dd3fc;
@@ -30,6 +34,7 @@
   color: #7dd3fc;
 }
 
+/* Hero */
 .sell-hero {
   position: relative;
   border: 1px solid #1f2d43;
@@ -53,7 +58,7 @@
   right: 0;
   height: 100%;
   aspect-ratio: 1 / 1;
-  background: url('../assets/images/circuit_integration.webp') right center / 100% 100% no-repeat;
+  background: url('../assets/images/circuit-integration-640.webp') right center / 100% 100% no-repeat;
   pointer-events: none;
   opacity: 1;
 }
@@ -152,15 +157,16 @@
   padding-inline: 0.72rem;
 }
 
-.sell-call-label,
-.sell-call-number {
+.sell-call-label {
   display: block;
 }
 
 .sell-call-number {
+  display: block;
   white-space: nowrap;
 }
 
+/* Payout Steps */
 .sell-payout {
   border: 1px solid #1f2d43;
   border-radius: 14px;
@@ -229,6 +235,7 @@
   color: #c3d3e5;
 }
 
+/* Value Props */
 .sell-value {
   border: 1px solid #23344e;
   border-radius: 14px;
@@ -288,6 +295,7 @@
   line-height: 1.5;
 }
 
+/* Lead Form */
 .sell-form-section {
   border: 1px solid #1f2d43;
   border-radius: 14px;

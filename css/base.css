@@ -1,4 +1,4 @@
-/* Global theme variables & Global Mobile-first base tokenslive here. */
+/* Base Theme (Flow: global color tokens and shared CSS variables) */
 :root {
   --bg: #0b1220;
   --fg: #e5e7eb;
