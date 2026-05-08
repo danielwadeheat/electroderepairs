@@ -74,10 +74,28 @@ if (siteHeader && navToggle && siteNav) {
 
   siteNav.addEventListener('click', (event) => {
     const target = event.target;
-    if (target instanceof HTMLElement && target.closest('a')) {
-      closeSiteNav();
-      closeServiceMenu();
+    if (!(target instanceof HTMLElement)) {
+      return;
     }
+
+    const navLink = target.closest('a[href]');
+    if (!(navLink instanceof HTMLElement) || navLink.tagName !== 'A') {
+      return;
+    }
+
+    closeSiteNav();
+    closeServiceMenu();
+
+    const isModifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
+    const opensInNewContext = navLink.target && navLink.target.toLowerCase() === '_blank';
+    const isDownloadLink = navLink.hasAttribute('download');
+
+    if (isModifiedClick || opensInNewContext || isDownloadLink) {
+      return;
+    }
+
+    event.preventDefault();
+    window.location.assign(navLink.href);
   });
 
   document.addEventListener('click', (event) => {
