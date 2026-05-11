@@ -13,21 +13,21 @@
     "build:images": "node tools/optimize-assets.js",
     "build:css": "cleancss -O1 -o css/base.min.css css/base.css && cleancss -O1 -o css/header.min.css css/header.css && cleancss -O1 -o css/pages.min.css css/pages.css && cleancss -O1 -o css/home.min.css css/home.css && cleancss -O1 -o css/footer.min.css css/footer.css && cleancss -O1 -o css/responsive.min.css css/responsive.css && cleancss -O1 -o css/buy.min.css css/buy.css && cleancss -O1 -o css/sell.min.css css/sell.css && cleancss -O1 -o css/repairs.min.css css/repairs.css",
     "build:js": "terser script.js --compress --mangle --output script.min.js",
-    "format:check": "prettier --check \"**/*.{html,css,js,md,json}\" \"!**/*.min.css\" \"!**/*.min.js\" \"!qa/lighthouse/**\"",
+    "format:check": "prettier --check \"**/*.{html,css,js,md,json}\" \"!**/*.min.css\" \"!**/*.min.js\"",
     "spellcheck": "cspell --no-progress --show-suggestions \"**/*.{html,css,js,md,json}\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danielwadeheat/ElectrodeRepairs.git"
+    "url": "git+https://github.com/danielwadeheat/electroderepairs.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/danielwadeheat/ElectrodeRepairs/issues"
+    "url": "https://github.com/danielwadeheat/electroderepairs/issues"
   },
-  "homepage": "https://github.com/danielwadeheat/ElectrodeRepairs#readme",
+  "homepage": "https://github.com/danielwadeheat/electroderepairs#readme",
   "devDependencies": {
     "@axe-core/cli": "^4.11.3",
     "@eslint/css": "^1.1.0",
