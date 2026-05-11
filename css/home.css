@@ -96,7 +96,13 @@ p {
 }
 
 .hero-final-line {
-  display: block;
+  display: inline;
+}
+
+@media (width >= 820px) {
+  .hero-final-line {
+    display: block;
+  }
 }
 
 /* Hero CTAs */
