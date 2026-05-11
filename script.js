@@ -471,6 +471,33 @@ for (const contactTopicField of contactTopicFields) {
   }
 }
 
+const localLeadForms = Array.from(document.querySelectorAll('[data-local-lead-form]'));
+for (const localLeadForm of localLeadForms) {
+  if (!(localLeadForm instanceof HTMLElement) || localLeadForm.tagName !== 'FORM') {
+    continue;
+  }
+
+  const submitStatus = localLeadForm.querySelector('[data-local-submit-status]');
+
+  localLeadForm.addEventListener('submit', (event) => {
+    if (event.defaultPrevented) {
+      return;
+    }
+
+    event.preventDefault();
+
+    if (!localLeadForm.checkValidity()) {
+      localLeadForm.reportValidity();
+      return;
+    }
+
+    if (submitStatus instanceof HTMLElement) {
+      submitStatus.hidden = false;
+      submitStatus.textContent = 'Quote request submitted. Our team will follow up shortly.';
+    }
+  });
+}
+
 const reviewsRotator = document.getElementById('reviews-rotator');
 
 if (reviewsRotator) {

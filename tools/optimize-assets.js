@@ -16,6 +16,14 @@ async function optimizeAssets() {
       .resize({ width: 640, height: 640, fit: 'cover' })
       .webp({ quality: 55, alphaQuality: 70, effort: 6 })
       .toFile('assets/images/circuit-integration-640.webp'),
+    sharp('assets/images/electrode_team.webp')
+      .resize({ width: 560 })
+      .webp({ quality: 74, effort: 6 })
+      .toFile('assets/images/electrode-team-560.webp'),
+    sharp('assets/images/electrode_team.webp')
+      .resize({ width: 768 })
+      .webp({ quality: 74, effort: 6 })
+      .toFile('assets/images/electrode-team-768.webp'),
   ]);
 }
 

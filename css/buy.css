@@ -11,7 +11,7 @@
 .buy-main {
   width: min(1120px, 100% - 1rem);
   margin: 0 auto;
-  padding: 1.1rem 0 2.2rem;
+  padding: 0 0 2.2rem;
   display: grid;
   gap: 1rem;
 }
@@ -42,13 +42,22 @@
   box-shadow:
     inset 0 1px 0 rgb(148 163 184 / 14%),
     0 18px 34px rgb(3 8 16 / 30%);
-  padding: 1.25rem;
-  padding-right: clamp(0.65rem, 16vw, 3.25rem);
+  padding: 0 1.25rem 1.25rem;
   overflow: clip;
 }
 
-.buy-hero::after {
+.buy-hero::before {
   content: '';
+  display: block;
+  width: calc(100% + 2.5rem);
+  height: clamp(8.75rem, 38vw, 11.5rem);
+  margin: 0 -1.25rem 1rem;
+  border-radius: 0 0 12px 12px;
+  background: url('../assets/images/circuit-integration-640.webp') center / cover no-repeat;
+}
+
+.buy-hero::after {
+  content: none;
   position: absolute;
   top: 0;
   right: 0;
@@ -74,6 +83,7 @@
 .buy-hero-intro {
   margin: 0.82rem 0 0;
   color: #c7d5e6;
+  width: 100%;
   max-width: none;
   line-height: 1.4;
 }

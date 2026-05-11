@@ -31,7 +31,7 @@
   z-index: 50;
   isolation: isolate;
   border-bottom: 1px solid rgb(148 163 184 / 18%);
-  background: linear-gradient(180deg, rgb(34 54 82 / 42%), rgb(18 31 50 / 24%)), rgb(18 31 50 / 26%);
+  background: linear-gradient(180deg, rgb(24 45 72 / 54%), rgb(10 23 41 / 40%)), rgb(10 23 41 / 44%);
   box-shadow:
     0 14px 30px rgb(3 8 16 / 22%),
     inset 0 1px 0 rgb(255 255 255 / 10%);
@@ -45,7 +45,7 @@
   inset: 0;
   z-index: 0;
   border-bottom: 1px solid rgb(255 255 255 / 7%);
-  background: linear-gradient(180deg, rgb(255 255 255 / 9%), rgb(255 255 255 / 2%)), rgb(18 31 50 / 18%);
+  background: linear-gradient(180deg, rgb(255 255 255 / 7%), rgb(255 255 255 / 1.5%)), rgb(10 23 41 / 24%);
   backdrop-filter: blur(34px) saturate(145%);
   -webkit-backdrop-filter: blur(34px) saturate(145%);
   pointer-events: none;
@@ -90,7 +90,7 @@
   top: 0;
   z-index: 20;
   border-bottom: 1px solid rgb(76 125 176 / 34%);
-  background: linear-gradient(180deg, rgb(26 57 94 / 62%) 0%, rgb(15 39 68 / 52%) 100%), rgb(12 30 53 / 68%);
+  background: linear-gradient(180deg, rgb(20 47 78 / 72%) 0%, rgb(9 27 50 / 64%) 100%), rgb(8 24 45 / 78%);
   backdrop-filter: blur(10px);
 }
 

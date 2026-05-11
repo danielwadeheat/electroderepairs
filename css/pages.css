@@ -37,7 +37,7 @@
   top: 0;
   z-index: 20;
   border-bottom: 1px solid rgb(76 125 176 / 34%);
-  background: linear-gradient(180deg, rgb(26 57 94 / 62%) 0%, rgb(15 39 68 / 52%) 100%), rgb(12 30 53 / 68%);
+  background: linear-gradient(180deg, rgb(20 47 78 / 72%) 0%, rgb(9 27 50 / 64%) 100%), rgb(8 24 45 / 78%);
   backdrop-filter: blur(10px);
 }
 
@@ -166,28 +166,36 @@
 
 .about-hero {
   position: relative;
+  display: grid;
   border: 1px solid #1f2d43;
   border-radius: 16px;
   background:
-    radial-gradient(circle at 92% -8%, rgb(42 130 196 / 30%), transparent 40%),
-    radial-gradient(circle at 8% 100%, rgb(34 197 94 / 13%), transparent 34%),
+    radial-gradient(circle at 8% -8%, rgb(42 130 196 / 30%), transparent 40%),
+    radial-gradient(circle at 100% 100%, rgb(34 197 94 / 16%), transparent 38%),
     linear-gradient(172deg, #101a2b 0%, #0f1827 55%, #0c1422 100%);
   box-shadow:
     inset 0 1px 0 rgb(148 163 184 / 14%),
     0 16px 30px rgb(3 8 16 / 30%);
-  padding: 1.25rem;
+  padding: 0;
   overflow: clip;
 }
 
 .about-hero::after {
   content: '';
   position: absolute;
-  inset: auto -4rem -5.5rem auto;
+  inset: auto auto -5.5rem -4rem;
   width: 12rem;
   height: 12rem;
   border-radius: 999px;
-  background: radial-gradient(circle, rgb(125 211 252 / 22%) 0%, transparent 70%);
+  background: radial-gradient(circle, rgb(125 211 252 / 16%) 0%, transparent 70%);
   pointer-events: none;
+  z-index: 0;
+}
+
+.about-hero-copy {
+  position: relative;
+  z-index: 1;
+  padding: 1.25rem;
 }
 
 .about-kicker {
@@ -210,6 +218,29 @@
   margin: 0.75rem 0 0;
   max-width: 60ch;
   color: #c7d5e6;
+}
+
+.about-hero-media {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  justify-self: center;
+  width: min(100%, 22rem);
+  margin: 0 auto 1.25rem;
+  border: 1px solid #1e40af;
+  border-radius: 14px;
+  overflow: clip;
+  background: #081426;
+  box-shadow:
+    inset 0 1px 0 rgb(148 163 184 / 14%),
+    0 12px 24px rgb(3 8 16 / 28%);
+}
+
+.about-hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 13px;
 }
 
 .about-panel {
@@ -905,6 +936,12 @@
   box-shadow:
     0 6px 16px rgb(28 79 119 / 36%),
     inset 0 1px 0 rgb(229 231 235 / 20%);
+}
+
+.contact-submit-status {
+  margin: 0.05rem 0 0;
+  color: #b9f3d4;
+  font-size: 0.87rem;
 }
 
 .contact-submit::before {

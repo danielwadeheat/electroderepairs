@@ -3,7 +3,8 @@
 
 @media (width >= 768px) {
   /* Home */
-  body::before {
+  .home-body::before {
+    content: '';
     top: clamp(4.95rem, 8.5vw, 6.45rem);
     right: max(1rem, calc((100vw - 960px) / 2 + 1rem));
     height: clamp(13.5rem, 36vw, 24rem);
@@ -15,9 +16,13 @@
   }
 
   .hero {
-    padding: 2rem;
+    padding: 1.2rem 2rem 2.8rem;
     padding-right: clamp(2rem, 34vw, 20rem);
     margin-top: 1.5rem;
+  }
+
+  .hero::before {
+    content: none;
   }
 
   h1 {
@@ -113,9 +118,25 @@
     gap: 1.15rem;
   }
 
-  .about-hero,
   .about-panel {
     padding: 1.8rem;
+  }
+
+  .about-hero {
+    grid-template-columns: minmax(0, 58ch) minmax(17rem, 1fr);
+    align-items: center;
+    column-gap: 1.25rem;
+  }
+
+  .about-hero-copy {
+    align-self: center;
+    padding: 1.8rem 0 1.8rem 1.8rem;
+  }
+
+  .about-hero-media {
+    justify-self: end;
+    width: min(100%, 25.5rem);
+    margin: 1.25rem 1.25rem 1.25rem 0;
   }
 
   .about-grid-two {
@@ -218,12 +239,17 @@
   }
 
   .repair-hero-circuit {
+    order: initial;
     display: block;
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     width: clamp(10.8rem, 31vw, 18.2rem);
+    height: auto;
+    margin: 0;
+    border-radius: 0;
+    overflow: visible;
     z-index: 0;
     pointer-events: none;
   }
@@ -375,6 +401,22 @@
     padding-right: clamp(1.25rem, 42vw, 18rem);
   }
 
+  .buy-hero::before {
+    content: none;
+  }
+
+  .buy-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    background: url('../assets/images/circuit-integration-640.webp') right center / 100% 100% no-repeat;
+    pointer-events: none;
+    opacity: 1;
+  }
+
   .buy-hero-copy h1 {
     max-width: 34ch;
   }
@@ -433,6 +475,22 @@
 
   .sell-hero {
     padding-right: clamp(1.25rem, 42vw, 18rem);
+  }
+
+  .sell-hero::before {
+    content: none;
+  }
+
+  .sell-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    background: url('../assets/images/circuit-integration-640.webp') right center / 100% 100% no-repeat;
+    pointer-events: none;
+    opacity: 1;
   }
 
   .sell-hero-copy h1 {

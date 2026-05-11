@@ -18,6 +18,13 @@
     <link rel="icon" href="assets/images/favicon-48x48.png?v=2" sizes="48x48" />
     <link rel="icon" href="assets/images/favicon.svg?v=2" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png?v=2" />
+    <link
+      rel="preload"
+      href="assets/images/electrode-team-768.webp"
+      as="image"
+      imagesrcset="assets/images/electrode-team-560.webp 560w, assets/images/electrode-team-768.webp 768w"
+      imagesizes="(min-width: 768px) min(38vw, 420px), calc(100vw - 2rem)"
+      fetchpriority="high" />
     <link rel="stylesheet" href="css/base.min.css" />
     <link rel="stylesheet" href="css/header.min.css" />
     <link rel="stylesheet" href="css/pages.min.css" />
@@ -111,12 +118,26 @@
     <main id="main-content" class="about-main">
       <div class="about-shell">
         <section class="about-hero" aria-labelledby="about-title">
-          <p class="about-kicker">About Electrode Repairs</p>
-          <h1 id="about-title">Built on trust, quality work, and reliable service.</h1>
-          <p class="about-hero-intro">
-            From a one-person startup to a full team, our focus has stayed the same: honest communication, dependable
-            repairs, and a better experience for every customer.
-          </p>
+          <div class="about-hero-copy">
+            <p class="about-kicker">About Electrode Repairs</p>
+            <h1 id="about-title">Built on trust, quality work, and reliable service.</h1>
+            <p class="about-hero-intro">
+              From a one-person startup to a full team, our focus has stayed the same: honest communication, dependable
+              repairs, and a better experience for every customer.
+            </p>
+          </div>
+          <figure class="about-hero-media">
+            <img
+              class="about-hero-image"
+              src="assets/images/electrode-team-768.webp"
+              srcset="assets/images/electrode-team-560.webp 560w, assets/images/electrode-team-768.webp 768w"
+              sizes="(min-width: 768px) min(38vw, 420px), calc(100vw - 2rem)"
+              width="768"
+              height="707"
+              alt="Electrode Repairs team members inside the Newcastle shop"
+              fetchpriority="high"
+              decoding="async" />
+          </figure>
         </section>
 
         <section class="about-panel">

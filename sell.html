@@ -173,7 +173,7 @@
             alt="Pre-owned devices ready for trade-in evaluation" />
         </div>
         <div class="sell-form-card">
-          <form class="contact-form" action="#" method="post">
+          <form class="contact-form" action="#" data-local-lead-form="sell">
             <div class="contact-field">
               <label for="sell-full-name">Full Name</label>
               <input
@@ -241,6 +241,9 @@
             </div>
 
             <button class="contact-submit" type="submit">Get Quote</button>
+            <p class="contact-submit-status" data-local-submit-status aria-live="polite" hidden>
+              Quote request submitted. Our team will follow up shortly.
+            </p>
             <p class="contact-note">Bring valid ID when you come in to complete same-day payout.</p>
           </form>
         </div>
