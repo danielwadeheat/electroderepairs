@@ -148,6 +148,26 @@
   text-wrap: pretty;
 }
 
+.legal-content h2 {
+  margin: 0;
+  color: #eef3fb;
+  font-size: 1.17em;
+  line-height: 1.3;
+}
+
+.legal-content ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.35rem;
+  color: #ccd8e8;
+}
+
+.legal-content li {
+  padding-left: 0.1rem;
+  text-wrap: pretty;
+}
+
 .legal-content strong {
   color: #eef3fb;
 }
