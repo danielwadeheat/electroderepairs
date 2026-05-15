@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="128" viewBox="0 0 192 128" role="img" aria-label="Controller sync issue icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1e33"/>
+      <stop offset="100%" stop-color="#153959"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+  </defs>
+  <rect width="192" height="128" rx="12" fill="url(#bg)"/>
+  <rect x="8" y="8" width="176" height="112" rx="10" fill="none" stroke="#2a82c4" stroke-width="2" opacity="0.85"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(96 64) scale(2) translate(-96 -64)">
+
+    <path d="M62 80 Q66 56 84 56 H108 Q126 56 130 80" stroke="url(#accent)" stroke-width="4"/>
+    <circle cx="82" cy="70" r="4" fill="#93c5fd" stroke="none"/>
+    <circle cx="110" cy="70" r="4" fill="#93c5fd" stroke="none"/>
+    <path d="M82 38 C88 32 104 32 110 38" stroke="#93c5fd" stroke-width="3"/>
+    <path d="M76 30 C86 20 106 20 116 30" stroke="#93c5fd" stroke-width="3"/>
+    <path d="M74 24 L118 46" stroke="#ef4444" stroke-width="4"/>
+    </g>
+</svg>

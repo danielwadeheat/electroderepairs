@@ -1,5 +1,8 @@
-/* Mobile-first styles for pages other than home, that are not fully universal live here */
+/* Non-Home Shared Pages (Flow: shared legal/header -> about -> shared reviews -> contact) */
 
+/* Mobile-First Styles For Non-Home Pages */
+
+/* Base + Layout */
 * {
   box-sizing: border-box;
 }
@@ -28,16 +31,17 @@
   padding: 1.25rem 1rem;
 }
 
-.legal-header {
+/* Shared Page Header */
+.simple-header {
   position: sticky;
   top: 0;
   z-index: 20;
-  border-bottom: 1px solid #1f2937;
-  background: rgb(11 18 32 / 88%);
+  border-bottom: 1px solid rgb(76 125 176 / 34%);
+  background: linear-gradient(180deg, rgb(20 47 78 / 72%) 0%, rgb(9 27 50 / 64%) 100%), rgb(8 24 45 / 78%);
   backdrop-filter: blur(10px);
 }
 
-.legal-header-inner {
+.simple-header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -45,13 +49,13 @@
   padding: 0.85rem 0;
 }
 
-.legal-logo-link {
+.simple-logo-link {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
 }
 
-.legal-logo {
+.simple-logo {
   width: clamp(138px, 35vw, 188px);
   height: auto;
 }
@@ -90,16 +94,27 @@
   color: #eff6ff;
 }
 
+/* Legal Pages */
 .legal-main {
   padding: 1.1rem 0 2.2rem;
+}
+
+.legal-page-links-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.6rem;
+}
+
+.legal-page-links {
+  display: inline-flex;
 }
 
 .legal-card {
   border: 1px solid #1f2d43;
   border-radius: 14px;
   background:
-    radial-gradient(circle at 100% 0%, rgb(42 130 196 / 22%), transparent 34%),
-    linear-gradient(175deg, #101a2b 0%, #0f1827 55%, #0c1422 100%);
+    radial-gradient(circle at 100% 0%, rgb(56 189 248 / 28%), transparent 40%),
+    linear-gradient(175deg, #0c1422 0%, #0f1827 55%, #101a2b 100%);
   box-shadow:
     inset 0 1px 0 rgb(148 163 184 / 14%),
     0 16px 30px rgb(3 8 16 / 30%);
@@ -133,11 +148,31 @@
   text-wrap: pretty;
 }
 
+.legal-content h2 {
+  margin: 0;
+  color: #eef3fb;
+  font-size: 1.17em;
+  line-height: 1.3;
+}
+
+.legal-content ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.35rem;
+  color: #ccd8e8;
+}
+
+.legal-content li {
+  padding-left: 0.1rem;
+  text-wrap: pretty;
+}
+
 .legal-content strong {
   color: #eef3fb;
 }
 
-/* About page */
+/* About Page */
 .about-main {
   padding: 1.1rem 0 2.2rem;
 }
@@ -151,28 +186,36 @@
 
 .about-hero {
   position: relative;
+  display: grid;
   border: 1px solid #1f2d43;
   border-radius: 16px;
   background:
-    radial-gradient(circle at 92% -8%, rgb(42 130 196 / 30%), transparent 40%),
-    radial-gradient(circle at 8% 100%, rgb(34 197 94 / 13%), transparent 34%),
+    radial-gradient(circle at 8% -8%, rgb(42 130 196 / 30%), transparent 40%),
+    radial-gradient(circle at 100% 100%, rgb(34 197 94 / 16%), transparent 38%),
     linear-gradient(172deg, #101a2b 0%, #0f1827 55%, #0c1422 100%);
   box-shadow:
     inset 0 1px 0 rgb(148 163 184 / 14%),
     0 16px 30px rgb(3 8 16 / 30%);
-  padding: 1.25rem;
+  padding: 0;
   overflow: clip;
 }
 
 .about-hero::after {
   content: '';
   position: absolute;
-  inset: auto -4rem -5.5rem auto;
+  inset: auto auto -5.5rem -4rem;
   width: 12rem;
   height: 12rem;
   border-radius: 999px;
-  background: radial-gradient(circle, rgb(125 211 252 / 22%) 0%, transparent 70%);
+  background: radial-gradient(circle, rgb(125 211 252 / 16%) 0%, transparent 70%);
   pointer-events: none;
+  z-index: 0;
+}
+
+.about-hero-copy {
+  position: relative;
+  z-index: 1;
+  padding: 1.25rem;
 }
 
 .about-kicker {
@@ -195,6 +238,29 @@
   margin: 0.75rem 0 0;
   max-width: 60ch;
   color: #c7d5e6;
+}
+
+.about-hero-media {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  justify-self: center;
+  width: min(100%, 22rem);
+  margin: 0 auto 1.25rem;
+  border: 1px solid #1e40af;
+  border-radius: 14px;
+  overflow: clip;
+  background: #081426;
+  box-shadow:
+    inset 0 1px 0 rgb(148 163 184 / 14%),
+    0 12px 24px rgb(3 8 16 / 28%);
+}
+
+.about-hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 13px;
 }
 
 .about-panel {
@@ -223,6 +289,38 @@
   line-height: 1.25;
 }
 
+.about-story-title {
+  text-align: center;
+  font-size: clamp(1.34rem, 3.7vw, 1.66rem);
+}
+
+.about-heading-with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.about-heading-icon {
+  width: 1.05em;
+  height: 1.05em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: #7dd3fc;
+}
+
+.about-heading-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentcolor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
 .about-panel p {
   margin: 0.72rem 0 0;
   color: #ccd8e8;
@@ -233,48 +331,25 @@
   gap: 0.1rem;
 }
 
+.about-story-image-wrap {
+  margin: 1rem 0 0;
+}
+
+.about-story-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid #2e4159;
+  box-shadow: 0 10px 22px rgb(4 10 20 / 28%);
+}
+
 .about-grid-two {
   display: grid;
   gap: 1rem;
 }
 
-.about-bios-intro {
-  color: #dce8f6;
-  font-weight: 600;
-}
-
-.about-bio-format {
-  margin: 0.85rem 0 0;
-  padding-left: 1.15rem;
-  color: #ccd8e8;
-  display: grid;
-  gap: 0.48rem;
-}
-
-.about-bio-examples {
-  margin-top: 1rem;
-  display: grid;
-  gap: 0.75rem;
-}
-
-.about-bio {
-  border: 1px solid #2a3a52;
-  border-radius: 12px;
-  padding: 0.9rem;
-  background: linear-gradient(180deg, rgb(17 24 39 / 96%), rgb(13 20 35 / 96%));
-}
-
-.about-bio h3 {
-  margin: 0;
-  font-size: 0.96rem;
-  color: #e8f1fd;
-}
-
-.about-bio p {
-  margin-top: 0.45rem;
-}
-
-/* Reviews section reused for About page */
+/* Reviews Section (Reused On About Page) */
 .reviews {
   margin-top: 0.25rem;
   padding: 1.25rem;
@@ -447,7 +522,7 @@
   }
 }
 
-/* Legal Footer (Privacy + Terms pages) */
+/* Legal Footer (Privacy + Terms Pages) */
 .legal-footer {
   margin-top: auto;
   border-top: 1px solid #1f2937;
@@ -618,7 +693,7 @@
   transform: translateY(0);
 }
 
-/* Contact page */
+/* Contact Page */
 .contact-body {
   margin: 0;
   min-height: 100svh;
@@ -883,6 +958,12 @@
     inset 0 1px 0 rgb(229 231 235 / 20%);
 }
 
+.contact-submit-status {
+  margin: 0.05rem 0 0;
+  color: #b9f3d4;
+  font-size: 0.87rem;
+}
+
 .contact-submit::before {
   content: '';
   position: absolute;
@@ -1089,6 +1170,102 @@
   }
 }
 
+.button-dot-orbit {
+  --button-dot-border-tone: rgb(42 130 196 / 45%);
+
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+}
+
+.button-dot-orbit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 7px;
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--button-dot-border-tone);
+  box-shadow:
+    0 0 0 1px rgb(42 130 196 / 22%),
+    0 0 3px rgb(42 130 196 / 36%);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition:
+    opacity 0.15s ease,
+    width 0.12s ease,
+    height 0.12s ease,
+    box-shadow 0.12s ease;
+  pointer-events: none;
+  z-index: 2;
+  offset-rotate: 0deg;
+  offset-anchor: 50% 50%;
+}
+
+.button-dot-orbit::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border-radius: 12px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(58 160 230 / 38%) 0%,
+    rgb(34 197 175 / 32%) 42%,
+    rgb(0 112 192 / 14%) 64%,
+    transparent 76%
+  );
+  filter: blur(8px);
+  opacity: 0;
+  transform: scale(0.94);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.button-dot-orbit:hover::before,
+.button-dot-orbit:focus-visible::before {
+  opacity: 1;
+  animation: contact-submit-led-dot 4.6s linear infinite;
+}
+
+.button-dot-orbit:active::before {
+  opacity: 1;
+  width: 4px;
+  height: 4px;
+  box-shadow:
+    0 0 0 1px rgb(42 130 196 / 26%),
+    0 0 4px rgb(42 130 196 / 44%);
+  animation-duration: 0.38s;
+}
+
+.button-dot-orbit:active::after {
+  opacity: 1;
+  transform: scale(1);
+  background:
+    linear-gradient(90deg, rgb(58 160 230 / 26%) 0%, rgb(34 197 175 / 30%) 50%, rgb(58 160 230 / 26%) 100%),
+    radial-gradient(
+      ellipse 130% 95% at 50% 50%,
+      rgb(58 160 230 / 30%) 0%,
+      rgb(34 197 175 / 26%) 54%,
+      rgb(0 112 192 / 12%) 78%,
+      transparent 100%
+    );
+  filter: blur(7px);
+}
+
+@supports (offset-path: inset(0 round 8px)) {
+  .button-dot-orbit::before {
+    top: 0;
+    left: 0;
+    transform: none;
+    offset-path: inset(1px round 8px);
+    offset-distance: 0%;
+  }
+}
+
 .contact-note {
   margin: 0;
   color: #9eb2c8;
@@ -1285,6 +1462,19 @@
   -webkit-text-fill-color: transparent;
 }
 
+.contact-storefront-wrap {
+  margin: 1rem 0 0;
+}
+
+.contact-storefront-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid #2e4159;
+  box-shadow: 0 10px 22px rgb(4 10 20 / 28%);
+}
+
 /* Contact Footer */
 .contact-footer {
   margin-top: auto;
@@ -1343,90 +1533,4 @@
 .contact-footer-legal-links a:focus-visible {
   color: var(--primary);
   text-decoration: underline;
-}
-
-@media (width >= 768px) {
-  .about-main {
-    padding: 1.7rem 0 2.7rem;
-  }
-
-  .about-shell {
-    gap: 1.15rem;
-  }
-
-  .about-hero,
-  .about-panel {
-    padding: 1.8rem;
-  }
-
-  .about-grid-two {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: start;
-  }
-
-  .about-bio-examples {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .legal-header-inner {
-    gap: 1rem;
-    padding: 0.95rem 0;
-  }
-
-  .legal-logo {
-    width: clamp(180px, 23vw, 244px);
-  }
-
-  .legal-nav-link {
-    font-size: 0.84rem;
-  }
-
-  .legal-main {
-    padding: 1.7rem 0 2.7rem;
-  }
-
-  .legal-card {
-    padding: 2rem;
-  }
-
-  .legal-content {
-    gap: 1.05rem;
-    margin-top: 1.2rem;
-  }
-
-  .legal-footer {
-    padding: 1.1rem 0 1.3rem;
-  }
-
-  .legal-footer-inner {
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-areas:
-      '. logo'
-      'contact logo'
-      'social copy';
-    gap: 0.25rem 1rem;
-    align-items: start;
-  }
-
-  .legal-footer-contact {
-    grid-area: contact;
-  }
-
-  .legal-footer-social-links {
-    grid-area: social;
-    align-self: end;
-  }
-
-  .legal-footer-copy {
-    grid-area: copy;
-  }
-
-  .legal-footer-logo-wrap {
-    grid-area: logo;
-    place-self: start end;
-  }
-
-  .contact-footer {
-    padding: 1.1rem 0 1.3rem;
-  }
 }

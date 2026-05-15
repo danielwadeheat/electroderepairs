@@ -4,29 +4,43 @@
   "description": "A full functioning website for Electrode Repairs, as a final Software Engineering Teams school project, for my brother Gabriel and I, Daniel, as well as for my Chickasaw STWP Internship placement at Electrode Repairs.  This showcases our HTML, CSS, and JavaScript skills attained through school at Francis Tuttle Technology Center.",
   "main": "script.js",
   "scripts": {
-    "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint . --ext .js",
-    "lint:css": "stylelint \"css/**/*.css\"",
-    "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix"
+    "lint": "npm run lint:js && npm run lint:html && npm run lint:css && npm run spellcheck",
+    "lint:js": "eslint \"**/*.js\" --ignore-pattern \"**/*.min.js\"",
+    "lint:html": "eslint \"**/*.html\"",
+    "lint:css": "eslint \"**/*.css\" --ignore-pattern \"**/*.min.css\"",
+    "lint:fix": "npm run lint:js -- --fix && npm run lint:html -- --fix && npm run lint:css -- --fix",
+    "build": "npm run build:images && npm run build:css && npm run build:js",
+    "build:images": "node tools/optimize-assets.js",
+    "build:css": "cleancss -O1 -o css/base.min.css css/base.css && cleancss -O1 -o css/header.min.css css/header.css && cleancss -O1 -o css/pages.min.css css/pages.css && cleancss -O1 -o css/home.min.css css/home.css && cleancss -O1 -o css/footer.min.css css/footer.css && cleancss -O1 -o css/responsive.min.css css/responsive.css && cleancss -O1 -o css/buy.min.css css/buy.css && cleancss -O1 -o css/sell.min.css css/sell.css && cleancss -O1 -o css/repairs.min.css css/repairs.css",
+    "build:js": "terser script.js --compress --mangle --output script.min.js",
+    "format:check": "prettier --check \"**/*.{html,css,js,md,json}\" \"!**/*.min.css\" \"!**/*.min.js\"",
+    "spellcheck": "cspell --no-progress --show-suggestions \"**/*.{html,css,js,md,json}\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danielwadeheat/ElectrodeRepairs.git"
+    "url": "git+https://github.com/danielwadeheat/electroderepairs.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/danielwadeheat/ElectrodeRepairs/issues"
+    "url": "https://github.com/danielwadeheat/electroderepairs/issues"
   },
-  "homepage": "https://github.com/danielwadeheat/ElectrodeRepairs#readme",
+  "homepage": "https://github.com/danielwadeheat/electroderepairs#readme",
   "devDependencies": {
+    "@axe-core/cli": "^4.11.3",
+    "@eslint/css": "^1.1.0",
     "@eslint/js": "^9.25.1",
+    "@html-eslint/eslint-plugin": "^0.59.0",
+    "@html-eslint/parser": "^0.59.0",
+    "clean-css-cli": "^5.6.3",
+    "cspell": "^10.0.0",
     "eslint": "^9.25.1",
     "eslint-config-prettier": "^10.1.8",
+    "lighthouse": "^13.3.0",
     "prettier": "^3.8.3",
-    "stylelint": "^16.18.0",
-    "stylelint-config-standard": "^38.0.0"
+    "sharp": "^0.34.5",
+    "terser": "^5.47.1"
   }
 }

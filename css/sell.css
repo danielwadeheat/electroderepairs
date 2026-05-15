@@ -1,0 +1,372 @@
+/* Sell Page (Flow: shell -> shared tokens -> hero -> payout -> value props -> lead form) */
+
+/* Page Shell */
+.sell-body {
+  margin: 0;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sell-main {
+  width: min(1120px, 100% - 1rem);
+  margin: 0 auto;
+  padding: 0 0 2.2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.sell-form-section {
+  scroll-margin-top: 8.5rem;
+}
+
+/* Shared Sell UI Tokens */
+.sell-kicker {
+  margin: 0;
+  color: #7dd3fc;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.sell-quote-kicker {
+  color: #7dd3fc;
+}
+
+/* Hero */
+.sell-hero {
+  position: relative;
+  border: 1px solid #1f2d43;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 100% 0%, rgb(42 130 196 / 28%), transparent 40%),
+    radial-gradient(circle at 0% 100%, rgb(34 197 94 / 12%), transparent 38%),
+    linear-gradient(172deg, #101a2b 0%, #0f1827 52%, #0b1422 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(148 163 184 / 14%),
+    0 18px 34px rgb(3 8 16 / 30%);
+  padding: 0 1.25rem 1.25rem;
+  overflow: clip;
+}
+
+.sell-hero::before {
+  content: '';
+  display: block;
+  width: calc(100% + 2.5rem);
+  height: clamp(8.75rem, 38vw, 11.5rem);
+  margin: 0 -1.25rem 1rem;
+  border-radius: 0 0 12px 12px;
+  background: url('../assets/images/circuit-integration-640.webp') center / cover no-repeat;
+}
+
+.sell-hero::after {
+  content: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  background: url('../assets/images/circuit-integration-640.webp') right center / 100% 100% no-repeat;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.sell-hero-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.sell-hero-copy h1 {
+  margin: 0.45rem 0 0;
+  font-size: clamp(1.58rem, 6.2vw, 2.35rem);
+  line-height: 1.08;
+  max-width: none;
+}
+
+.sell-hero-intro {
+  margin: 0.82rem 0 0;
+  color: #c7d5e6;
+  width: 100%;
+  max-width: none;
+  line-height: 1.4;
+}
+
+.sell-hero-actions {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.sell-hero-actions .button-dot-orbit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sell-cta {
+  display: inline-block;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  background-image: linear-gradient(135deg, #2a82c4 0%, #1c4f77 55%, #2a82c4 100%);
+  background-size: 170% 170%;
+  border: 1px solid rgb(42 130 196 / 45%);
+  color: #eff6ff;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow:
+    0 6px 16px rgb(28 79 119 / 36%),
+    inset 0 1px 0 rgb(229 231 235 / 20%);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.22s ease,
+    background-position 0.35s ease,
+    filter 0.2s ease;
+}
+
+.sell-cta:hover,
+.sell-cta:focus-visible {
+  background-position: 100% 50%;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow:
+    0 0 0 1px rgb(42 130 196 / 38%),
+    0 12px 26px rgb(42 130 196 / 42%),
+    0 0 22px rgb(42 130 196 / 30%);
+}
+
+.sell-cta:active {
+  transform: translateY(1px) scale(0.98);
+  filter: brightness(0.93);
+}
+
+.sell-cta-secondary {
+  background: linear-gradient(180deg, rgb(17 24 39 / 96%), rgb(13 20 35 / 96%));
+  border-color: #2f4259;
+  color: #dce9f8;
+  box-shadow:
+    inset 0 1px 0 rgb(229 231 235 / 12%),
+    0 5px 14px rgb(5 12 22 / 26%);
+}
+
+.sell-cta-secondary:hover,
+.sell-cta-secondary:focus-visible {
+  background: linear-gradient(180deg, rgb(26 40 59 / 98%), rgb(15 24 39 / 98%));
+  border-color: #5fa4d9;
+  box-shadow:
+    0 0 0 1px rgb(95 164 217 / 28%),
+    0 10px 20px rgb(9 18 31 / 35%);
+}
+
+.sell-cta-call {
+  display: inline-grid;
+  justify-items: center;
+  line-height: 1.2;
+  text-align: center;
+  min-width: 10.1rem;
+  padding-inline: 0.72rem;
+}
+
+.sell-call-label {
+  display: block;
+}
+
+.sell-call-number {
+  display: block;
+  white-space: nowrap;
+}
+
+/* Payout Steps */
+.sell-payout {
+  border: 1px solid #1f2d43;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 10% 8%, rgb(56 189 248 / 13%), transparent 36%),
+    linear-gradient(170deg, #0f1a2d 0%, #0c1526 100%);
+  padding: 1.2rem;
+}
+
+.sell-payout h2 {
+  margin: 0.4rem 0 0;
+  font-size: clamp(1.34rem, 4.2vw, 1.9rem);
+  line-height: 1.2;
+}
+
+.sell-payout-intro {
+  margin: 0.72rem 0 0;
+  color: #bfd0e2;
+  max-width: 60ch;
+}
+
+.sell-payout-grid {
+  margin-top: 0.95rem;
+  display: grid;
+  gap: 0.82rem;
+}
+
+.sell-payout-step {
+  border: 1px solid #2a3d57;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgb(17 24 39 / 96%), rgb(13 20 35 / 96%));
+  padding: 0.86rem 0.92rem;
+  box-shadow: inset 0 1px 0 rgb(148 163 184 / 11%);
+  transition:
+    transform 0.18s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.sell-payout-step:hover,
+.sell-payout-step:focus-within {
+  transform: translateY(-1px);
+  border-color: #3b556f;
+  box-shadow:
+    inset 0 1px 0 rgb(148 163 184 / 14%),
+    0 8px 18px rgb(4 10 20 / 26%);
+}
+
+.sell-step-number {
+  margin: 0;
+  color: #96d8ff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.sell-payout-step h3 {
+  margin: 0.32rem 0 0;
+  font-size: 0.98rem;
+  line-height: 1.3;
+  color: #e6effb;
+}
+
+.sell-payout-step p {
+  margin: 0.36rem 0 0;
+  color: #c3d3e5;
+}
+
+/* Value Props */
+.sell-value {
+  border: 1px solid #23344e;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 100% 0%, rgb(34 197 94 / 14%), transparent 40%),
+    radial-gradient(circle at -10% 100%, rgb(56 189 248 / 16%), transparent 42%),
+    linear-gradient(165deg, #0f1b2d 0%, #0d1728 46%, #0b1424 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(148 163 184 / 10%),
+    0 12px 22px rgb(4 10 20 / 20%);
+  padding: 1.25rem;
+}
+
+.sell-value h2 {
+  margin: 0;
+  font-size: clamp(1.36rem, 4.3vw, 1.95rem);
+  line-height: 1.2;
+}
+
+.sell-value-grid {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.sell-value-item {
+  border: 1px solid #2a3d58;
+  border-radius: 12px;
+  padding: 0.92rem 0.98rem;
+  background: linear-gradient(180deg, rgb(17 24 39 / 96%), rgb(13 20 35 / 96%));
+  transition:
+    transform 0.18s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.sell-value-item:hover,
+.sell-value-item:focus-within {
+  transform: translateY(-1px);
+  border-color: #3b556f;
+  box-shadow:
+    inset 0 1px 0 rgb(148 163 184 / 14%),
+    0 8px 18px rgb(4 10 20 / 26%);
+}
+
+.sell-value-item h3 {
+  margin: 0;
+  color: #eaf3ff;
+  font-size: 0.87rem;
+  letter-spacing: 0.09em;
+  line-height: 1.35;
+}
+
+.sell-value-item p {
+  margin: 0.52rem 0 0;
+  color: #bfd1e3;
+  line-height: 1.5;
+}
+
+/* Lead Form */
+.sell-form-section {
+  border: 1px solid #1f2d43;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 85% 0%, rgb(42 130 196 / 24%), transparent 42%),
+    linear-gradient(170deg, #0f1a2d 0%, #0c1526 100%);
+  padding: 1.2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.sell-form-copy h2 {
+  margin: 0.4rem 0 0;
+  font-size: clamp(1.34rem, 4.2vw, 1.9rem);
+  line-height: 1.2;
+}
+
+.sell-form-copy p {
+  margin: 0.7rem 0 0;
+  color: #bfd0e2;
+  max-width: 58ch;
+}
+
+.sell-form-copy .sell-kicker {
+  color: #7dd3fc;
+}
+
+.sell-form-image {
+  display: block;
+  margin-top: 0.9rem;
+  width: min(100%, 420px);
+  height: auto;
+}
+
+.sell-form-copy a {
+  color: #9dd8ff;
+  text-underline-offset: 2px;
+}
+
+.sell-form-copy a:hover,
+.sell-form-copy a:focus-visible {
+  color: #c6e7ff;
+}
+
+.sell-form-card {
+  border: 1px solid #2a3a52;
+  border-radius: 12px;
+  padding: 1rem;
+  background: linear-gradient(180deg, rgb(15 23 38 / 94%), rgb(9 16 29 / 94%));
+  box-shadow: inset 0 1px 0 rgb(148 163 184 / 12%);
+  transition:
+    transform 0.18s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.sell-form-card:hover,
+.sell-form-card:focus-within {
+  transform: translateY(-1px);
+  border-color: #3b556f;
+  box-shadow:
+    inset 0 1px 0 rgb(148 163 184 / 14%),
+    0 8px 18px rgb(4 10 20 / 26%);
+}
