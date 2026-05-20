@@ -2,6 +2,12 @@
 
 This project is a static frontend handoff for Electrode Repairs. It is not a complete WordPress theme yet.
 
+## Update Note For This Zip
+
+This updated handoff zip changes the home page only by removing one unnecessary `<link rel="preload">` for `assets/images/circuit-integration-640.webp` from `index.html`. That image is still used as decorative CSS background art and will continue to load normally from the stylesheet, but it no longer triggers Chrome's "preloaded but not used within a few seconds" inspection warning.
+
+Aside from this note in `HANDOFF.md` and that one-line cleanup in `index.html`, everything else remains the same as the previous zip.
+
 ## What Is Included
 
 - Static HTML pages for the current site UI.
